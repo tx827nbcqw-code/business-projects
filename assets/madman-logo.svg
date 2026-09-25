@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-labelledby="title desc">
+  <title id="title">Madman Photojournalism mountain and tree monogram</title>
+  <desc id="desc">A mountain-shaped M beside a P with a small evergreen in its bowl, in a circular badge.</desc>
+  <circle cx="100" cy="100" r="88" fill="#f4f1e8" stroke="#30363f" stroke-width="9"/>
+  <!-- A single, clean M line doubles as two mountain ridges. -->
+  <path d="M38 151V82L57 105 76 61 95 105 106 82V151" fill="none" stroke="#30363f" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- The upright is a clean trunk; the bowl makes the P unmistakable. -->
+  <path d="M124 151V88h17c27 0 27 38 0 38h-17" fill="none" stroke="#30363f" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M147 95l-7 9h4l-7 8h5v7h10v-7h5l-7-8h4z" fill="#b59a68"/>
+</svg>
