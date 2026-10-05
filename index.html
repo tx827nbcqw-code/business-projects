@@ -55,6 +55,10 @@
     .hero-actions { display: flex; align-items: center; gap: 22px; flex-wrap: wrap; }
     .button { display: inline-flex; align-items: center; justify-content: center; min-height: 46px; padding: 0 18px; color: var(--ink); background: var(--paper-light); border: 1px solid var(--paper-light); text-decoration: none; letter-spacing: .025em; font: 500 12px var(--sans); transition: .2s ease; }
     .button:hover { background: #e4dfd5; border-color: #e4dfd5; }
+    .button-book { background: #e4c990; border-color: #e4c990; font-weight: 700; font-size: 15px; min-height: 50px; }
+    .button-book:hover, .button-book:focus-visible { background: #f0dcae; border-color: #f0dcae; }
+    .andre-name { font-weight: 700; color: #765617; background: rgba(228,201,144,.32); padding: 1px 4px; }
+    @media(max-width:600px) { .hero-actions { gap: 12px; } .hero-actions .button-book { width: 100%; order: -1; } .hero-actions .button-explore, .hero-actions .button-quiet { font-size: 14px; } }
     .button-quiet { padding-left: 0; color: var(--paper-light); background: transparent; border-color: transparent; text-decoration: underline; text-decoration-color: rgba(250,246,236,.5); text-underline-offset: 5px; }
     .hero-caption { position: absolute; left: 5.2vw; bottom: 26px; z-index: 1; color: rgba(250,246,236,.65); font: 9px var(--mono); letter-spacing: .12em; text-transform: uppercase; }
     .section { padding: 116px 9vw; }
@@ -264,12 +268,12 @@
         <p class="eyebrow">A field journal by Andre Ottati</p>
         <h1 id="hero-title">Come in.<br><em>Wander awhile.</em></h1>
         <p class="hero-copy">I hope these photographs give you a moment to wander, notice something beautiful, and feel closer to the people and places around you. Browse the collection, bring a favorite home as a print, or book me to photograph a day that matters to you.</p>
-        <div class="hero-actions"><a class="button" href="#stories">Explore photography <span aria-hidden="true">&nbsp;↘</span></a><a class="button button-quiet" href="#prints">View print options</a></div>
+        <div class="hero-actions"><a class="button button-explore" href="#stories">Explore photography</a><a class="button button-book" href="https://photography-hub.andreottati.chatgpt.site/book">Book a Session</a><a class="button button-quiet" href="#prints">View prints</a></div>
       </div>
       <div class="hero-caption">Field note · Hallstatt, Austria</div>
     </section>
     <section class="section" id="about">
-      <div class="about"><div class="about-copy"><p class="section-kicker">01 / About Andre</p><p class="big-quote">The work begins<br>with attention.</p><p>I’m Andre Ottati. Travel has taught me to look past the view and notice how a place feels, how people meet, and what I want to remember.</p><p>I make photographs to remember how a moment felt. I hope you find something meaningful in them too.</p></div><figure class="about-photo"><img src="assets/about-andre.jpg" alt="Andre standing in front of a historic building in Florence" loading="lazy"></figure></div>
+      <div class="about"><div class="about-copy"><p class="section-kicker">01 / About Andre</p><p class="big-quote">The work begins<br>with attention.</p><p>I’m <strong class="andre-name">Andre Ottati</strong>. Travel has taught me to look past the view and notice how a place feels, how people meet, and what I want to remember.</p><p>I make photographs to remember how a moment felt. I hope you find something meaningful in them too.</p></div><figure class="about-photo"><img src="assets/about-andre.jpg" alt="Andre standing in front of a historic building in Florence" loading="lazy"></figure></div>
     </section>
     <section class="interlude" id="soundtrack">
       <div class="interlude-copy"><p class="section-kicker">02 / A note for the road</p><h2>A little music<br>for the <em>in-between.</em></h2><p>Take your time here. Tap a player for a preview; open Spotify to hear the full song.</p><p class="soundtrack-note">Acoustic Spanish blues and Latin warmth for the hush between one place and the next.</p></div>
