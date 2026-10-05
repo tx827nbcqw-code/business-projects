@@ -38,9 +38,10 @@
     .brand small { display: block; margin-top: 4px; color: rgba(250,246,236,.68); font: 9px var(--mono); letter-spacing: .08em; }
     .nav { display: flex; align-items: center; gap: clamp(18px, 3vw, 42px); }
     .nav a { position: relative; text-decoration: none; text-transform: uppercase; letter-spacing: .1em; font: 12px var(--mono); opacity: .98; transition: opacity .2s, color .2s; }
-    .nav a:not(.nav-shop)::after { content: ""; position: absolute; left: 0; right: 100%; bottom: -7px; height: 1px; background: #e4c990; transition: right .2s; }
-    .nav a:not(.nav-shop):hover::after, .nav a:not(.nav-shop):focus-visible::after { right: 0; }
-    .nav .nav-shop { border: 1px solid rgba(250,246,236,.78); padding: 9px 12px; }
+    .nav a:not(.nav-book)::after { content: ""; position: absolute; left: 0; right: 100%; bottom: -7px; height: 1px; background: #e4c990; transition: right .2s; }
+    .nav a:not(.nav-book):hover::after, .nav a:not(.nav-book):focus-visible::after { right: 0; }
+    .nav .nav-book { border: 1px solid var(--gold); padding: 12px 16px; background: var(--gold); color: var(--ink); font-weight: 500; }
+    .nav .nav-book:hover, .nav .nav-book:focus-visible { background: #e4c990; border-color: #e4c990; }
     .menu-toggle { display: none; color: var(--paper-light); background: none; border: 1px solid rgba(250,246,236,.6); padding: 9px 12px; font: 10px var(--mono); text-transform: uppercase; letter-spacing: .1em; }
     .hero { position: relative; min-height: 690px; height: min(820px, 94svh); display: flex; align-items: flex-end; color: var(--paper-light); overflow: hidden; background: var(--ink); }
     .hero::before { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(29,30,28,.63) 0%, rgba(29,30,28,.26) 53%, rgba(29,30,28,.04) 100%), linear-gradient(0deg, rgba(24,24,22,.42), transparent 60%), url("assets/Halstatt---Madman-1.jpg") center 52% / cover; transform: scale(1.015); }
@@ -210,7 +211,7 @@
       .nav { display: none; position: absolute; top: 61px; left: 5vw; right: 5vw; padding: 20px; flex-direction: column; align-items: stretch; gap: 0; background: rgba(41,40,32,.97); border: 1px solid rgba(250,246,236,.3); }
       .nav.is-open { display: flex; }
       .nav a { padding: 14px 4px; border-bottom: 1px solid rgba(250,246,236,.15); font-size: 12px; }
-      .nav .nav-shop { margin-top: 12px; text-align: center; border: 1px solid rgba(250,246,236,.55); }
+      .nav .nav-book { margin-top: 12px; text-align: center; border: 1px solid rgba(250,246,236,.55); }
       .hero { min-height: 660px; height: 91svh; }
       .hero::before { background-position: 58% center; }
       .hero-content { width: 91vw; padding: 0 0 12vh 7vw; }
@@ -254,7 +255,7 @@
     <a class="brand" href="#top" aria-label="Madman Photojournalism home"><img class="brand-mark" src="assets/madman-logo.svg" alt=""><span>Madman<small>Photojournalism</small></span></a>
     <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
     <nav class="nav" id="site-nav" aria-label="Main navigation">
-      <a href="#stories">Photography</a><a href="#prints" class="nav-shop">Prints</a><a href="#about">About</a><a href="#contact">Contact</a><a href="#booking">Book a session</a>
+      <a href="#stories">Photography</a><a href="#prints">Prints</a><a href="#about">About</a><a href="#contact">Contact</a><a href="https://photography-hub.andreottati.chatgpt.site/book" class="nav-book">Book a session</a>
     </nav>
   </header>
   <main>
