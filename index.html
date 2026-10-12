@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#302c27">
-  <meta name="description" content="Business photography by Andre Ottati: branding portraits, workplace stories, and detail photographs for local businesses in Chattanooga and Collegedale.">
-  <title>Madman Photojournalism — Business & Brand Photography</title>
+  <meta name="description" content="Photography by Andre Ottati: business and branding, personal photo shoots, and fine-art prints in Chattanooga and Collegedale.">
+  <title>Madman Photojournalism — Photography by Andre Ottati</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
@@ -259,6 +259,34 @@
     .story[data-category="business"] .story-image img { aspect-ratio: auto; height: auto; min-height: 0; filter: none; }
     .hero-content { width: min(980px, 92vw); }
     @media(max-width:600px) { h1 { font-size: clamp(53px, 12vw, 72px); } }
+    .offerings { padding:56px 9vw; background:var(--paper-light); }
+    .offering-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:24px; }
+    .offering { display:block; text-decoration:none; border:1px solid var(--line); background:var(--paper); }
+    .offering img { display:block; width:100%; height:240px; object-fit:cover; }
+    .offering:first-child img { object-position:center 35%; }
+    .offering > div { padding:24px; }
+    .offering small { font:10px var(--mono); text-transform:uppercase; letter-spacing:.1em; }
+    .offering h2 { font-size:38px; margin:14px 0; }
+    .offering p { font-size:13px; line-height:1.7; color:#686457; }
+    .offering span { display:block; margin-top:20px; font-size:12px; font-weight:600; }
+    .offering:hover { border-color:var(--moss); }
+    .collection-intro { margin:0 0 30px; padding:20px; border-left:2px solid var(--gold); background:var(--paper-light); }
+    .collection-intro p { max-width:680px; font-size:14px; line-height:1.7; margin:0 0 14px; }
+    #collection-inquiry[hidden] { display:none; }
+    @media(max-width:760px) { .offering-grid { grid-template-columns:1fr; } .offering { display:grid; grid-template-columns:.8fr 1.2fr; } .offering img { height:100%; min-height:230px; } .offering h2 { font-size:32px; } }
+    @media(max-width:440px) { .offering { display:block; } .offering img { height:220px; min-height:0; } }
+    .shoot-group { grid-column:1 / -1; padding:0 0 32px; border-bottom:1px solid var(--line); }
+    .shoot-group[hidden] { display:none; }
+    .shoot-group-head { display:flex; align-items:baseline; justify-content:space-between; gap:16px; margin-bottom:20px; }
+    .shoot-group-head h3 { margin:0; font:400 36px var(--serif); }
+    .shoot-group-head > span { font:10px var(--mono); color:var(--wood); }
+    .shoot-group-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:18px; margin-bottom:20px; }
+    .shoot-group-grid .story { width:100%; margin-top:0; }
+    .shoot-group-grid .story .story-image img { aspect-ratio:3/4; height:auto; min-height:0; object-fit:contain; background:var(--paper-light); filter:none; }
+    .shoot-group-grid .story h3 { font-size:25px; }
+    .shoot-group-grid .story p, .shoot-group-grid .story-meta, .shoot-group-grid .image-tag { display:none; }
+    .shoot-group-grid .story h3 { margin-top:10px; }
+    @media(max-width:760px) { .shoot-group-grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; } .shoot-group-head h3 { font-size:30px; } }
   </style>
 </head>
 <body>
@@ -266,29 +294,39 @@
     <a class="brand" href="#top" aria-label="Madman Photojournalism home"><img class="brand-mark" src="assets/madman-logo.svg" alt=""><span>Madman<small>Photojournalism</small></span></a>
     <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
     <nav class="nav" id="site-nav" aria-label="Main navigation">
-      <a href="#business">Brands &amp; businesses</a><a href="#people">People</a><a href="#prints">Prints</a><a href="#about">About</a><a href="#contact">Contact</a><a href="https://photography-hub.andreottati.chatgpt.site/book" class="nav-book">Plan a business shoot</a>
+      <a href="#business">Business</a><a href="#people">Photo shoots</a><a href="#prints">Prints</a><a href="#about">About</a><a href="#contact">Contact</a><a href="https://photography-hub.andreottati.chatgpt.site/book" class="nav-book">Plan a session</a>
     </nav>
   </header>
   <main>
     <section class="hero" aria-labelledby="hero-title">
       <div class="hero-content">
-        <p class="eyebrow">Business photography · Chattanooga &amp; Collegedale</p>
-        <h1 id="hero-title">Show the people.<br><em>Tell the business.</em></h1>
-        <p class="hero-copy">Real people, skilled work, and the details that make your business yours. I photograph local businesses for their websites, social media, and the next chapter of their story.</p>
-        <div class="hero-actions"><a class="button button-book" href="https://photography-hub.andreottati.chatgpt.site/book">Plan a business shoot</a><a class="button button-explore" href="#business">See business work</a><a class="button button-quiet" href="#prints">Prints</a></div>
+        <p class="eyebrow">Photography by Andre Ottati · Chattanooga &amp; Collegedale</p>
+        <h1 id="hero-title">People. Purpose.<br><em>A lasting impression.</em></h1>
+        <p class="hero-copy">For the business you’re building, the people you love, and the places that stay with you. Thoughtful photographs for your next chapter—or a favorite to bring home.</p>
+        <div class="hero-actions"><a class="button button-book" href="https://photography-hub.andreottati.chatgpt.site/book">Plan a session</a><a class="button button-explore" href="#stories">Explore photography</a><a class="button button-quiet" href="#prints">Prints</a></div>
       </div>
       <div class="hero-caption">Featured shoot · Manny, barber business photography</div>
     </section>
+    <section class="offerings" aria-label="Three ways to work with Andre"><div class="offering-grid">
+<a class="offering" href="#business"><img src="assets/shoots/manny-barber-09.svg" alt="Barber business portrait" loading="lazy"><div><small>Business &amp; branding</small><h2>The people behind the work.</h2><p>Portraits, workplaces, and the details of your craft for your website and social media.</p><span>Explore &amp; inquire ↗</span></div></a>
+<a class="offering" href="#people"><img src="assets/shoots/graduation-portrait.jpg" alt="Graduation portrait" loading="lazy"><div><small>Photo shoots</small><h2>The moments that matter.</h2><p>Graduation, couples, families, and weddings—photographs that feel like you.</p><span>Explore &amp; plan a shoot ↗</span></div></a>
+<a class="offering" href="#prints"><img src="assets/Halstatt---Madman-1.jpg" alt="An alpine village reflected in its lake" loading="lazy"><div><small>Fine-art prints</small><h2>A little of the world, at home.</h2><p>Travel and nature photographs to live with. Inquire directly on your favorite image.</p><span>Explore prints ↗</span></div></a>
+</div></section>
+    <section class="interlude" id="soundtrack">
+      <div class="interlude-copy"><p class="section-kicker">04 / A note for the road</p><h2>A little music<br>for the <em>in-between.</em></h2><p>Take your time here. Tap a player for a preview; open Spotify to hear the full song.</p><p class="soundtrack-note">Acoustic Spanish blues and Latin warmth for the hush between one place and the next.</p></div>
+      <div class="music-panel"><p class="music-panel-title">Tap play · Spotify previews</p><div class="music-players"><iframe src="https://open.spotify.com/embed/track/2yEgqisKDxa4G3bwH1ks0d?utm_source=generator&theme=0" loading="lazy" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" title="Play a Spotify preview here: Es Verdad by Daniel, Me Estás Matando"></iframe><iframe src="https://open.spotify.com/embed/track/5v40fZhbu5j6iEFsdZ4Avu?utm_source=generator&theme=0" loading="lazy" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" title="Play a Spotify preview here: Cuando Cuando by José y el Toro"></iframe></div><div class="music-fallback"><a href="https://open.spotify.com/track/2yEgqisKDxa4G3bwH1ks0d" target="_blank" rel="noopener noreferrer">Open full “Es Verdad” in Spotify ↗</a><a href="https://open.spotify.com/track/5v40fZhbu5j6iEFsdZ4Avu" target="_blank" rel="noopener noreferrer">Open full “Cuando Cuando” in Spotify ↗</a></div></div>
+    </section>
     <section class="section" id="stories">
-      <div class="section-head"><div><p class="section-kicker">01 / Business &amp; photography</p><h2>Your business,<br><em>in focus.</em></h2></div><div><p class="section-note">Explore a barber business shoot: portraits, the work itself, and details of the craft. Personal sessions and print photographs are here too.</p><p class="sample-note">65 photographs · brands, people &amp; places</p></div></div>
+      <div class="section-head"><div><p class="section-kicker">02 / Photography</p><h2>People, places,<br><em>and purpose.</em></h2></div><div><p class="section-note">Explore brands and businesses, portraits and personal milestones, or travel and nature photographs available as prints.</p><p class="sample-note">65 photographs · brands, people &amp; places</p></div></div>
       <div class="portfolio-filters" aria-label="Browse photography collections">
         <div class="filter-set" role="group" aria-label="Portfolio priorities"><div class="filters">
-          <button class="filter" id="business" type="button" data-filter="business" aria-pressed="true">Brands &amp; businesses <span class="filter-count" aria-hidden="true"></span></button>
-          <button class="filter" id="people" type="button" data-filter="personal" aria-pressed="false">People <span class="filter-count" aria-hidden="true"></span></button>
+          <button class="filter" id="business" type="button" data-filter="business" aria-pressed="true">Business inquiry <span class="filter-count" aria-hidden="true"></span></button>
+          <button class="filter" id="people" type="button" data-filter="personal" aria-pressed="false">Photo shoots <span class="filter-count" aria-hidden="true"></span></button>
           <button class="filter" id="prints" type="button" data-filter="all" aria-pressed="false">Prints <span class="filter-count" aria-hidden="true"></span></button>
         </div></div>
       </div>
-      <div class="gallery-guide"><span>Business work first. Open a photograph to see it in full, or explore the other collections.</span><a class="gallery-back" id="gallery-back" href="index.html#stories" hidden>← Back to all photography</a><strong id="story-count" aria-live="polite"></strong></div>
+      <div class="collection-intro" aria-live="polite"><p id="collection-copy"></p><a class="button button-dark" id="collection-inquiry" href="https://photography-hub.andreottati.chatgpt.site/book">Inquire about business photography ↗</a></div>
+      <div class="gallery-guide"><span>Choose a collection. Open any photograph to see the full image.</span><a class="gallery-back" id="gallery-back" href="index.html#stories" hidden>← Back to all photography</a><strong id="story-count" aria-live="polite"></strong></div>
       <div class="gallery">
         <article class="story" data-category="wild"><a class="story-image story-link" href="assets/DSC5135.jpg" data-lightbox data-caption="Giza · desert morning"><img src="assets/DSC5135.jpg" alt="The pyramids rising above the desert plateau" loading="lazy"><span class="image-tag">01 · Giza</span></a><div class="story-meta"><span>Field note no. 01</span><span>Egypt · morning</span></div><h3>Stone against the sky</h3><p>At Giza, the desert morning changes your sense of scale.</p></article>
         <article class="story" data-category="road"><a class="story-image story-link" href="assets/DSC1274.jpg" data-lightbox data-caption="Trackside · passing red"><img src="assets/DSC1274.jpg" alt="A red Porsche race car streaking past on the track" loading="lazy"><span class="image-tag">02 · Trackside</span></a><div class="story-meta"><span>Field note no. 02</span><span>Speed · color</span></div><h3>A blur of red</h3><p>For a fraction of a second, speed becomes color and sound.</p></article>
@@ -302,9 +340,9 @@
       <div class="shoot-card">
         <div class="step-copy">
           <p class="section-kicker">02 / Work together</p>
-          <h2 id="shoot-heading">Make your next<br><em>business impression.</em></h2>
-          <p>Tell me what you do, who you want to reach, and where the photographs will be used. We’ll shape the session around your team, workspace, and craft. Business sessions are quoted personally after reviewing the scope.</p>
-          <div class="booking-actions"><a class="button button-dark" href="https://photography-hub.andreottati.chatgpt.site/book">Request a business shoot <span aria-hidden="true">↗</span></a></div>
+          <h2 id="shoot-heading">Plan a shoot<br><em>with Andre.</em></h2>
+          <p>Tell me what you have in mind: your brand, graduation, a growing family, a wedding, or a moment worth keeping. We’ll shape the session around you and confirm the details before booking.</p>
+          <div class="booking-actions"><a class="button button-dark" href="https://photography-hub.andreottati.chatgpt.site/book">Request a photo shoot <span aria-hidden="true">↗</span></a></div>
         </div>
         <div class="shoot-preview" aria-label="Preview commissioned shoot collections">
           <a class="shoot-photo-card portrait-card" href="#business"><span>BUSINESS &amp; BRANDING</span><strong>Show your craft.</strong><i>Explore the barber shoot ↗</i></a>
@@ -318,15 +356,11 @@
     <section class="section" id="about">
       <div class="about"><div class="about-copy"><p class="section-kicker">03 / About Andre</p><p class="big-quote">The work begins<br>with attention.</p><p>I’m <strong class="andre-name">Andre Ottati</strong>, a photographer and student based in Collegedale. I’m drawn to the people behind a business: what they make, how they work, and the care they put into it.</p><p>My goal is to make your business feel familiar before someone walks through the door. Alongside business photography, I photograph personal milestones and collect travel and nature stories.</p></div><figure class="about-photo"><img src="assets/about-andre.jpg" alt="Andre standing in front of a historic building in Florence" loading="lazy"></figure></div>
     </section>
-    <section class="interlude" id="soundtrack">
-      <div class="interlude-copy"><p class="section-kicker">04 / A note for the road</p><h2>A little music<br>for the <em>in-between.</em></h2><p>Take your time here. Tap a player for a preview; open Spotify to hear the full song.</p><p class="soundtrack-note">Acoustic Spanish blues and Latin warmth for the hush between one place and the next.</p></div>
-      <div class="music-panel"><p class="music-panel-title">Tap play · Spotify previews</p><div class="music-players"><iframe src="https://open.spotify.com/embed/track/2yEgqisKDxa4G3bwH1ks0d?utm_source=generator&theme=0" loading="lazy" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" title="Play a Spotify preview here: Es Verdad by Daniel, Me Estás Matando"></iframe><iframe src="https://open.spotify.com/embed/track/5v40fZhbu5j6iEFsdZ4Avu?utm_source=generator&theme=0" loading="lazy" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" title="Play a Spotify preview here: Cuando Cuando by José y el Toro"></iframe></div><div class="music-fallback"><a href="https://open.spotify.com/track/2yEgqisKDxa4G3bwH1ks0d" target="_blank" rel="noopener noreferrer">Open full “Es Verdad” in Spotify ↗</a><a href="https://open.spotify.com/track/5v40fZhbu5j6iEFsdZ4Avu" target="_blank" rel="noopener noreferrer">Open full “Cuando Cuando” in Spotify ↗</a></div></div>
-    </section>
   </main>
   <footer class="footer" id="contact">
     <div class="footer-inner">
       <div><a class="brand" href="#top"><img class="brand-mark" src="assets/madman-logo.svg" alt=""><span>Madman<small>Photojournalism</small></span></a><p class="footer-meta">Photographs by Andre Ottati · © <span id="year"></span></p></div>
-      <nav class="footer-nav" aria-label="Section navigation"><a href="#business">Brands &amp; businesses</a><a href="#people">People</a><a href="#prints">Prints</a><a href="#about">About Andre</a></nav>
+      <nav class="footer-nav" aria-label="Section navigation"><a href="#business">Business</a><a href="#people">Photo shoots</a><a href="#prints">Prints</a><a href="#about">About Andre</a></nav>
       <div class="footer-links" aria-label="Contact Andre">
         <a href="tel:+14075519957">Call or text<span>407-551-9957</span></a>
         <a href="mailto:ottati.a.andre@gmail.com">Email<span>ottati.a.andre@gmail.com</span></a>
@@ -397,6 +431,38 @@ archiveStories.forEach(function (item, index) {
     });
     orderedStories.forEach(function (story) { gallery.appendChild(story); });
     const stories = orderedStories;
+    const shootGroups = [];
+    const sets = [
+      ['Manny · Barber business shoot', 'business', story => story.dataset.category === 'business'],
+      ['Graduation portraits', 'personal', story => story.querySelector('img').src.includes('/graduation-')],
+      ['Expecting & family', 'personal', story => /\/(family-|expecting-family)/.test(story.querySelector('img').src)],
+      ['Couples & proposals', 'personal', story => /\/(proposal-|couple-|engagement-|beach-proposal)/.test(story.querySelector('img').src)],
+      ['Wedding details & celebration', 'personal', story => story.dataset.category === 'wedding']
+    ];
+    sets.forEach(([title, category, test]) => {
+      const items = orderedStories.filter(test);
+      if (!items.length) return;
+      const group = document.createElement('section');
+      group.className = 'shoot-group';
+      const head = document.createElement('div'); head.className = 'shoot-group-head';
+      const heading = document.createElement('h3'); heading.textContent = title;
+      const count = document.createElement('span'); count.textContent = items.length + ' photographs';
+      head.append(heading, count);
+      const grid = document.createElement('div'); grid.className = 'shoot-group-grid';
+      items.forEach(item => grid.appendChild(item));
+      const button = document.createElement('button'); button.className = 'button button-dark'; button.type = 'button';
+      let expanded = false;
+      function update() {
+        items.forEach((item, i) => { item.hidden = !expanded && i >= 4; });
+        button.textContent = expanded ? 'Show fewer photographs' : 'See all ' + items.length + ' photographs';
+        button.setAttribute('aria-expanded', String(expanded));
+        button.hidden = items.length <= 4;
+      }
+      button.addEventListener('click', () => { expanded = !expanded; update(); });
+      group.append(head, grid, button); gallery.appendChild(group);
+      shootGroups.push({group, category, items, update}); update();
+    });
+
     const filters = Array.from(document.querySelectorAll('.filter'));
     const loadMore = document.querySelector('#load-more');
     const galleryBack = document.querySelector('#gallery-back');
@@ -404,13 +470,26 @@ archiveStories.forEach(function (item, index) {
     let selectedCategory = 'business';
     let visibleLimit = 5;
     function renderStories() {
+      const business = selectedCategory === 'business', prints = selectedCategory === 'all';
+      document.querySelector('#collection-copy').textContent = business ? 'Brands & businesses · Portraits, your workspace, and your craft. Share your goals and where you’ll use the images; business sessions are quoted after review.' : prints ? 'Prints · Find a photograph you love and inquire on that specific image for size and delivery options.' : 'Photo shoots · Graduation, couples, families, and weddings. Share the occasion and we’ll plan the session together.';
+      const inquiry = document.querySelector('#collection-inquiry');
+      inquiry.hidden = prints;
+      inquiry.textContent = business ? 'Inquire about business photography ↗' : 'Request a photo shoot ↗';
+
       const matchesCategory = function (story) { return (selectedCategory === 'all' && !shootCategories.has(story.dataset.category)) || (selectedCategory === 'shoots' && shootCategories.has(story.dataset.category)) || (selectedCategory === 'personal' && ['people','wedding'].includes(story.dataset.category)) || story.dataset.category === selectedCategory; };
       const matching = stories.filter(matchesCategory);
       matching.forEach(function (story, index) { story.hidden = index >= visibleLimit; });
       stories.filter(function (story) { return !matching.includes(story); }).forEach(function (story) { story.hidden = true; });
       const visible = Math.min(matching.length, visibleLimit);
       document.querySelector('#story-count').textContent = 'Showing ' + visible + ' of ' + matching.length + (matching.length === 1 ? ' photograph' : ' photographs');
-      const remaining = matching.length - visible;
+      const grouped = selectedCategory === 'business' || selectedCategory === 'personal' || selectedCategory === 'shoots' || selectedCategory === 'people' || selectedCategory === 'wedding';
+      shootGroups.forEach(set => {
+        const active = grouped && set.items.some(matchesCategory);
+        set.group.hidden = !active;
+        if (active) set.update();
+      });
+      if (grouped) document.querySelector('#story-count').textContent = matching.length + ' photographs · grouped by shoot';
+      const remaining = grouped ? 0 : matching.length - visible;
       galleryBack.hidden = selectedCategory !== 'people' && selectedCategory !== 'wedding' && selectedCategory !== 'shoots' && selectedCategory !== 'business' && selectedCategory !== 'personal';
       loadMore.hidden = remaining <= 0;
       loadMore.querySelector('span').textContent = remaining > 0 ? '· ' + remaining + ' left' : '';
