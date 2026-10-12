@@ -489,9 +489,12 @@ archiveStories.forEach(function (item, index) {
       ['Expecting & family', 'personal', story => /\/(family-|expecting-family)/.test(story.querySelector('img').src)],
       ['Couples & proposals', 'personal', story => /\/(proposal-|couple-|engagement-|beach-proposal)/.test(story.querySelector('img').src)],
       ['Wedding details & celebration', 'personal', story => story.dataset.category === 'wedding'],
-      ['Nature & landscapes', 'prints', story => story.dataset.category === 'wild'],
-      ['Cities & culture', 'prints', story => story.dataset.category === 'city'],
-      ['On the road', 'prints', story => story.dataset.category === 'road']
+      ["Streets & everyday life", 'prints', story => ["field-003.jpg","field-025.jpg","field-032.jpg","field-040.jpg","field-054.jpg","field-087.jpg"].includes(new URL(story.querySelector('img').src).pathname.split('/').pop())],
+      ["Architecture & old places", 'prints', story => ["DSC1371.jpg","field-006.jpg","field-012.jpg","field-021.jpg","field-038.jpg","field-047.jpg","field-062.jpg","field-064.jpg","field-083.jpg"].includes(new URL(story.querySelector('img').src).pathname.split('/').pop())],
+      ["Coasts & rivers", 'prints', story => ["DSC5735.jpg","field-022.jpg","field-036.jpg","field-037.jpg","field-071.jpg","field-077.jpg","field-086.jpg"].includes(new URL(story.querySelector('img').src).pathname.split('/').pop())],
+      ["Mountains & the natural world", 'prints', story => ["Halstatt---Madman-1.jpg","field-102.jpg","woodpecker.jpg","waterfall-canyon.jpg"].includes(new URL(story.querySelector('img').src).pathname.split('/').pop())],
+      ["Desert & ancient wonders", 'prints', story => ["DSC5135.jpg","field-027.jpg","field-048.jpg","field-058.jpg","field-095.jpg"].includes(new URL(story.querySelector('img').src).pathname.split('/').pop())],
+      ["Movement & journeys", 'prints', story => ["DSC1274.jpg","field-007.jpg","field-015.jpg","field-055.jpg","field-067.jpg"].includes(new URL(story.querySelector('img').src).pathname.split('/').pop())]
     ];
     sets.forEach(([title, category, test]) => {
       const items = orderedStories.filter(test);
