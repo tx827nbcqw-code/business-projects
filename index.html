@@ -577,6 +577,7 @@ archiveStories.forEach(function (item, index) {
       const inquiry = document.querySelector('#collection-inquiry');
       inquiry.hidden = prints;
       inquiry.textContent = business ? 'Business inquiry ↗' : 'Plan a shoot ↗';
+      inquiry.href = 'https://photography-hub.andreottati.chatgpt.site/book' + (business ? '?type=business' : '');
 
       const matchesCategory = function (story) { return (selectedCategory === 'all' && !shootCategories.has(story.dataset.category)) || (selectedCategory === 'shoots' && shootCategories.has(story.dataset.category)) || (selectedCategory === 'personal' && ['people','wedding'].includes(story.dataset.category)) || story.dataset.category === selectedCategory; };
       const matching = stories.filter(matchesCategory);
