@@ -356,6 +356,11 @@
     #about .big-quote { margin-bottom:10px; }
     #about .about-copy p { margin-bottom:10px; }
     #about .andre-name { color:#8a2e33; background:#e4d8c2; padding:2px 6px; border-radius:2px; box-decoration-break:clone; -webkit-box-decoration-break:clone; }
+    .print-jump { display:flex; align-items:center; gap:12px; margin:0 0 20px; font-size:12px; color:var(--wood); }
+    .print-jump[hidden] { display:none; }
+    .print-jump select { max-width:100%; padding:10px; border:1px solid var(--line); background:var(--paper-light); color:var(--ink); font:12px var(--sans); }
+    .print-group { scroll-margin-top:24px; }
+    @media(max-width:600px) { .print-jump { flex-direction:column; align-items:flex-start; gap:7px; } .print-jump select { width:100%; } }
   </style>
 </head>
 <body>
@@ -514,7 +519,7 @@ archiveStories.forEach(function (item, index) {
       if (!items.length) return;
       const group = document.createElement('section');
       group.className = 'shoot-group';
-      if (category === 'prints') group.classList.add('print-group');
+      if (category === 'prints') { group.classList.add('print-group'); group.id = 'print-' + title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/-$/, ''); }
       const head = document.createElement('div'); head.className = 'shoot-group-head';
       const heading = document.createElement('h3'); heading.textContent = title;
       const count = document.createElement('span'); count.textContent = items.length + ' photographs';
@@ -535,6 +540,15 @@ archiveStories.forEach(function (item, index) {
       shootGroups.push({group, category, items, update}); update();
     });
 
+    const printJump = document.createElement('label');
+    printJump.className = 'print-jump'; printJump.append('Jump to a print collection ');
+    const printSelect = document.createElement('select'); printSelect.setAttribute('aria-label','Jump to a print collection');
+    const prompt = document.createElement('option'); prompt.value = ''; prompt.textContent = 'Choose a section ↓'; printSelect.append(prompt);
+    shootGroups.filter(set => set.category === 'prints').forEach(set => {
+      const option = document.createElement('option'); option.value = set.group.id; option.textContent = set.group.querySelector('h3').textContent; printSelect.append(option);
+    });
+    printSelect.addEventListener('change', () => { if (printSelect.value) document.getElementById(printSelect.value).scrollIntoView({behavior:'smooth', block:'start'}); });
+    printJump.append(printSelect); document.querySelector('.portfolio-filters').after(printJump);
     const filters = Array.from(document.querySelectorAll('.filter'));
     const loadMore = document.querySelector('#load-more');
     const galleryBack = document.querySelector('#gallery-back');
@@ -542,6 +556,7 @@ archiveStories.forEach(function (item, index) {
     let selectedCategory = 'business';
     let visibleLimit = 5;
     function renderStories() {
+      printJump.hidden = selectedCategory !== 'all';
       const business = selectedCategory === 'business', prints = selectedCategory === 'all';
       document.querySelector('#collection-copy').textContent = business ? 'Portraits, workspaces, and your craft. Quoted to fit your goals.' : prints ? 'Choose a photograph to inquire about sizes and delivery.' : 'Graduation, couples, families, and weddings.';
       const inquiry = document.querySelector('#collection-inquiry');
