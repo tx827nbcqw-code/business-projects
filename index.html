@@ -372,6 +372,12 @@
       #about .about-copy .big-quote { font-size:26px; }
       #about .about-copy p { font-size:12px; line-height:1.55; }
     }
+    .appreciation { display:grid; grid-template-columns:minmax(0,1fr) 130px; align-items:center; gap:28px; padding:30px 9vw; border-top:1px solid var(--line); background:var(--paper-light); }
+    .appreciation h2 { font-size:clamp(27px,4vw,38px); line-height:1.1; }
+    .appreciation p { max-width:650px; font-size:13px; line-height:1.65; margin:12px 0 0; }
+    .appreciation .about-photo { width:130px; border-width:5px; margin:0; }
+    .appreciation .signature { color:#9b393a; font-weight:700; }
+    @media(max-width:600px) { .appreciation { grid-template-columns:minmax(0,1fr) 85px; gap:18px; padding:26px 7vw; } .appreciation .about-photo { width:85px; } }
   </style>
 </head>
 <body>
@@ -379,7 +385,7 @@
     <a class="brand" href="#top" aria-label="Madman Photojournalism home"><img class="brand-mark" src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20200%20200%22%20role%3D%22img%22%20aria-labelledby%3D%22title%20desc%22%3E%0A%20%20%3Ctitle%20id%3D%22title%22%3EMadman%20Photojournalism%20mountain%20and%20tree%20monogram%3C%2Ftitle%3E%0A%20%20%3Cdesc%20id%3D%22desc%22%3EA%20mountain-shaped%20M%20beside%20a%20P%20with%20a%20small%20evergreen%20in%20its%20bowl%2C%20in%20a%20circular%20badge.%3C%2Fdesc%3E%0A%20%20%3Ccircle%20cx%3D%22100%22%20cy%3D%22100%22%20r%3D%2288%22%20fill%3D%22%23f4f1e8%22%20stroke%3D%22%2330363f%22%20stroke-width%3D%229%22%2F%3E%0A%20%20%3C!--%20A%20single%2C%20clean%20M%20line%20doubles%20as%20two%20mountain%20ridges.%20--%3E%0A%20%20%3Cpath%20d%3D%22M38%20151V82L57%20105%2076%2061%2095%20105%20106%2082V151%22%20fill%3D%22none%22%20stroke%3D%22%2330363f%22%20stroke-width%3D%2212%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%0A%20%20%3C!--%20The%20upright%20is%20a%20clean%20trunk%3B%20the%20bowl%20makes%20the%20P%20unmistakable.%20--%3E%0A%20%20%3Cpath%20d%3D%22M124%20151V88h17c27%200%2027%2038%200%2038h-17%22%20fill%3D%22none%22%20stroke%3D%22%2330363f%22%20stroke-width%3D%2212%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%0A%20%20%3Cpath%20d%3D%22M147%2095l-7%209h4l-7%208h5v7h10v-7h5l-7-8h4z%22%20fill%3D%22%23b59a68%22%2F%3E%0A%3C%2Fsvg%3E%0A" alt=""><span>Madman<small>Photojournalism</small></span></a>
     <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
     <nav class="nav" id="site-nav" aria-label="Main navigation">
-      <a href="#business">Business</a><a href="#people">Photo shoots</a><a href="#prints">Prints</a><a href="#about">About</a><a href="#contact">Contact</a><a href="https://photography-hub.andreottati.chatgpt.site/book" class="nav-book">Plan a session</a>
+      <a href="#business">Business</a><a href="#people">Photo shoots</a><a href="#prints">Prints</a><a href="#andre">About</a><a href="#contact">Contact</a><a href="https://photography-hub.andreottati.chatgpt.site/book" class="nav-book">Plan a session</a>
     </nav>
   </header>
   <main>
@@ -391,9 +397,6 @@
         <div class="hero-actions"><a class="button button-book" href="#people">Personal photo shoots</a><a class="button button-explore" href="#business">Business &amp; branding</a></div>
       </div>
       <div class="hero-caption">Manny Muniz · Artwork in the shop</div>
-    </section>
-    <section class="section" id="about">
-      <div class="about"><div class="about-copy"><p class="section-kicker">01 / About Andre</p><p class="big-quote">Behind the lens.</p><p>I’m <strong class="andre-name">Andre Ottati</strong>, a photographer and student in Collegedale. I enjoy getting to know people, helping them feel comfortable, and capturing what matters to them. I bring that same care to businesses, showing the people and work that make each one personal.</p></div><figure class="about-photo"><img src="assets/about-andre.jpg" alt="Andre standing in front of a historic building in Florence" loading="lazy"></figure></div>
     </section>
     <section class="interlude" id="soundtrack">
       <div class="interlude-copy"><p class="section-kicker">02 / A note for the road</p><h2>A little music<br>for the <em>in-between.</em></h2><p>Take your time here. Tap a player for a preview; open Spotify to hear the full song.</p><p class="soundtrack-note">Acoustic Spanish blues and Latin warmth for the hush between one place and the next.</p></div>
@@ -436,11 +439,12 @@
     </section>
     
 
+    <section class="appreciation" id="andre" aria-labelledby="appreciation-title"><div><h2 id="appreciation-title">Let’s make this feel like you.</h2><p>You don’t need to know how to pose or have every detail figured out. Tell me what matters to you, and we’ll plan from there. I’ll help you feel comfortable and make photographs that reflect you or your business.</p><p class="signature">Andre Ottati</p></div><figure class="about-photo"><img src="assets/about-andre.jpg" alt="Andre standing in front of a historic building in Florence" loading="lazy"></figure></section>
   </main>
   <footer class="footer" id="contact">
     <div class="footer-inner">
       <div><a class="brand" href="#top"><img class="brand-mark" src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20200%20200%22%20role%3D%22img%22%20aria-labelledby%3D%22title%20desc%22%3E%0A%20%20%3Ctitle%20id%3D%22title%22%3EMadman%20Photojournalism%20mountain%20and%20tree%20monogram%3C%2Ftitle%3E%0A%20%20%3Cdesc%20id%3D%22desc%22%3EA%20mountain-shaped%20M%20beside%20a%20P%20with%20a%20small%20evergreen%20in%20its%20bowl%2C%20in%20a%20circular%20badge.%3C%2Fdesc%3E%0A%20%20%3Ccircle%20cx%3D%22100%22%20cy%3D%22100%22%20r%3D%2288%22%20fill%3D%22%23f4f1e8%22%20stroke%3D%22%2330363f%22%20stroke-width%3D%229%22%2F%3E%0A%20%20%3C!--%20A%20single%2C%20clean%20M%20line%20doubles%20as%20two%20mountain%20ridges.%20--%3E%0A%20%20%3Cpath%20d%3D%22M38%20151V82L57%20105%2076%2061%2095%20105%20106%2082V151%22%20fill%3D%22none%22%20stroke%3D%22%2330363f%22%20stroke-width%3D%2212%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%0A%20%20%3C!--%20The%20upright%20is%20a%20clean%20trunk%3B%20the%20bowl%20makes%20the%20P%20unmistakable.%20--%3E%0A%20%20%3Cpath%20d%3D%22M124%20151V88h17c27%200%2027%2038%200%2038h-17%22%20fill%3D%22none%22%20stroke%3D%22%2330363f%22%20stroke-width%3D%2212%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%0A%20%20%3Cpath%20d%3D%22M147%2095l-7%209h4l-7%208h5v7h10v-7h5l-7-8h4z%22%20fill%3D%22%23b59a68%22%2F%3E%0A%3C%2Fsvg%3E%0A" alt=""><span>Madman<small>Photojournalism</small></span></a><p class="footer-meta">Photographs by Andre Ottati · © <span id="year"></span></p></div>
-      <nav class="footer-nav" aria-label="Section navigation"><a href="#business">Business</a><a href="#people">Photo shoots</a><a href="#prints">Prints</a><a href="#about">About Andre</a></nav>
+      <nav class="footer-nav" aria-label="Section navigation"><a href="#business">Business</a><a href="#people">Photo shoots</a><a href="#prints">Prints</a><a href="#andre">About Andre</a></nav>
       <div class="footer-links" aria-label="Contact Andre">
         <a href="tel:+14075519957">Call or text<span>407-551-9957</span></a>
         <a href="mailto:ottati.a.andre@gmail.com">Email<span>ottati.a.andre@gmail.com</span></a>
