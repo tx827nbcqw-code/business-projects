@@ -46,7 +46,7 @@
     .nav .nav-book:hover, .nav .nav-book:focus-visible { background: #e4c990; border-color: #e4c990; }
     .menu-toggle { display: none; color: var(--paper-light); background: none; border: 1px solid rgba(250,246,236,.6); padding: 9px 12px; font: 10px var(--mono); text-transform: uppercase; letter-spacing: .1em; }
     .hero { position: relative; min-height: 690px; height: min(820px, 94svh); display: flex; align-items: flex-end; color: var(--paper-light); overflow: hidden; background: var(--ink); }
-    .hero::before { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(29,30,28,.63) 0%, rgba(29,30,28,.26) 53%, rgba(29,30,28,.04) 100%), linear-gradient(0deg, rgba(24,24,22,.42), transparent 60%), url("assets/shoots/manny-barber-03.svg") center 42% / cover; transform: scale(1.015); }
+    .hero::before { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(18,20,18,.88) 0%, rgba(18,20,18,.72) 48%, rgba(18,20,18,.25) 100%), linear-gradient(0deg, rgba(18,20,18,.5), transparent 70%), url("assets/shoots/manny-barber-10.svg") center 48% / cover; transform: scale(1.015); }
     .hero-content { position: relative; z-index: 1; width: min(820px, 78vw); padding: 0 0 10.5vh 10vw; }
     .eyebrow, .mono { font: 10px var(--mono); letter-spacing: .16em; text-transform: uppercase; }
     .eyebrow { display: flex; align-items: center; gap: 12px; color: #e4c990; }
@@ -287,6 +287,10 @@
     .shoot-group-grid .story p, .shoot-group-grid .story-meta, .shoot-group-grid .image-tag { display:none; }
     .shoot-group-grid .story h3 { margin-top:10px; }
     @media(max-width:760px) { .shoot-group-grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; } .shoot-group-head h3 { font-size:30px; } }
+    .hero h1 { text-shadow:0 2px 24px rgba(0,0,0,.55); }
+    .hero h1 em { color:#e4c990; }
+    .hero-actions .button { min-height:50px; font-size:14px; }
+    @media(max-width:600px) { .hero-actions .button { width:100%; } .hero::before { background-position:65% center; } }
   </style>
 </head>
 <body>
@@ -301,19 +305,14 @@
     <section class="hero" aria-labelledby="hero-title">
       <div class="hero-content">
         <p class="eyebrow">Photography by Andre Ottati · Chattanooga &amp; Collegedale</p>
-        <h1 id="hero-title">People. Purpose.<br><em>A lasting impression.</em></h1>
-        <p class="hero-copy">For the business you’re building, the people you love, and the places that stay with you. Thoughtful photographs for your next chapter—or a favorite to bring home.</p>
-        <div class="hero-actions"><a class="button button-book" href="https://photography-hub.andreottati.chatgpt.site/book">Plan a session</a><a class="button button-explore" href="#stories">Explore photography</a><a class="button button-quiet" href="#prints">Prints</a></div>
+        <h1 id="hero-title">Come in.<br><em>Wander awhile.</em></h1>
+        <p class="hero-copy">For the people and moments that matter—and the business you’re building. I’m Andre Ottati, and I make thoughtful photographs of personal milestones, brands, and the world around us.</p>
+        <div class="hero-actions"><a class="button button-book" href="#people">Personal photo shoots</a><a class="button button-explore" href="#business">Business &amp; branding</a></div>
       </div>
-      <div class="hero-caption">Featured shoot · Manny, barber business photography</div>
+      <div class="hero-caption">Manny · The details of the craft</div>
     </section>
-    <section class="offerings" aria-label="Three ways to work with Andre"><div class="offering-grid">
-<a class="offering" href="#business"><img src="assets/shoots/manny-barber-09.svg" alt="Barber business portrait" loading="lazy"><div><small>Business &amp; branding</small><h2>The people behind the work.</h2><p>Portraits, workplaces, and the details of your craft for your website and social media.</p><span>Explore &amp; inquire ↗</span></div></a>
-<a class="offering" href="#people"><img src="assets/shoots/graduation-portrait.jpg" alt="Graduation portrait" loading="lazy"><div><small>Photo shoots</small><h2>The moments that matter.</h2><p>Graduation, couples, families, and weddings—photographs that feel like you.</p><span>Explore &amp; plan a shoot ↗</span></div></a>
-<a class="offering" href="#prints"><img src="assets/Halstatt---Madman-1.jpg" alt="An alpine village reflected in its lake" loading="lazy"><div><small>Fine-art prints</small><h2>A little of the world, at home.</h2><p>Travel and nature photographs to live with. Inquire directly on your favorite image.</p><span>Explore prints ↗</span></div></a>
-</div></section>
     <section class="interlude" id="soundtrack">
-      <div class="interlude-copy"><p class="section-kicker">04 / A note for the road</p><h2>A little music<br>for the <em>in-between.</em></h2><p>Take your time here. Tap a player for a preview; open Spotify to hear the full song.</p><p class="soundtrack-note">Acoustic Spanish blues and Latin warmth for the hush between one place and the next.</p></div>
+      <div class="interlude-copy"><p class="section-kicker">01 / A note for the road</p><h2>A little music<br>for the <em>in-between.</em></h2><p>Take your time here. Tap a player for a preview; open Spotify to hear the full song.</p><p class="soundtrack-note">Acoustic Spanish blues and Latin warmth for the hush between one place and the next.</p></div>
       <div class="music-panel"><p class="music-panel-title">Tap play · Spotify previews</p><div class="music-players"><iframe src="https://open.spotify.com/embed/track/2yEgqisKDxa4G3bwH1ks0d?utm_source=generator&theme=0" loading="lazy" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" title="Play a Spotify preview here: Es Verdad by Daniel, Me Estás Matando"></iframe><iframe src="https://open.spotify.com/embed/track/5v40fZhbu5j6iEFsdZ4Avu?utm_source=generator&theme=0" loading="lazy" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" title="Play a Spotify preview here: Cuando Cuando by José y el Toro"></iframe></div><div class="music-fallback"><a href="https://open.spotify.com/track/2yEgqisKDxa4G3bwH1ks0d" target="_blank" rel="noopener noreferrer">Open full “Es Verdad” in Spotify ↗</a><a href="https://open.spotify.com/track/5v40fZhbu5j6iEFsdZ4Avu" target="_blank" rel="noopener noreferrer">Open full “Cuando Cuando” in Spotify ↗</a></div></div>
     </section>
     <section class="section" id="stories">
