@@ -46,3 +46,7 @@ These are logic checks, not real browser interaction tests. Full browser visual 
 ## Files
 
 `index.html` is both the source and playable distribution; edit it directly. `check-game.cjs` is the logic regression harness. No package manager or build step is needed. `sw.js`, `manifest.webmanifest`, and `icon.svg` provide optional hosted offline support; they are not required for a downloaded HTML file.
+
+## Travel and pets
+
+Travel permanently unlocks 11 confirmed visited destinations with coins: Valencia, Madrid, Mallorca, Porto, Marseille, Cluj-Napoca, Dubrovnik, Cairo, Berlin, Hallstatt, and La Fortuna. Returning is free. Each destination remixes the walkable neighborhood with local shop names, a scenery style and palette; the five core games remain available. Local adventures offer three randomized budgeting/capacity questions and increase their numeric difficulty every three completions. Pet adoptions are permanent and companions follow the player across destinations. Existing saves migrate without resetting coins or XP.
