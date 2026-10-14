@@ -7,7 +7,7 @@ assert(!/https?:\/\//.test(html),'No remote asset dependencies');
 for(let id of ['cafe','photo','kitchen','supply','school']){
  run(`openGame('${id}')`);
  if(id==='cafe')run(`$('leaf').value=game.grams*game.cups;$('water').value=game.grams*game.cups*game.ratio;serve()`);
- if(id==='photo')run(`game.ap=0;game.sh=game.motion?-Math.max(0,game.target):0;game.iso=-game.target-game.sh;shoot()`);
+ if(id==='photo')run(`game.ap=0;game.sh=game.motion?-Math.max(0,game.target):0;game.iso=-game.target-game.sh;['ap','sh','iso'].forEach(id=>$(id).value=game[id]);shoot()`);
  if(id==='kitchen')run(`game.order=[0,1,2,3,4];checkRecipe()`);
  if(id==='supply')run(`{let q=[[0]],seen=new Set([0]);while(q.length){let p=q.shift(),n=p.at(-1);if(n===24){game.path=p;break}for(let v of neighbors(n))if(!seen.has(v)&&!game.blocks.includes(v)){seen.add(v);q.push([...p,v])}}deliver()}`);
  if(id==='school')run(`answer(game.answer,{})`);
@@ -41,3 +41,6 @@ run(`state.coins=0;visitDestination('cairo')`);assert.equal(run('state.destinati
 run(`state.coins=500;adoptPet('dog');adoptPet('dog')`);assert.equal(run('state.coins'),455);assert.equal(run('state.pet'),'dog');
 for(const id of run('destinations.map(d=>d.id)')){run(`state.coins=10000;visitDestination('${id}');drawWorld(400);destinationChallenge();answerTravel(-999)`);assert.equal(run('travelRound.step'),0);for(let i=0;i<3;i++)run('answerTravel(travelRound.answer)');assert(run('travelRound.done'));let coins=run('state.coins');run('answerTravel(travelRound.answer)');assert.equal(run('state.coins'),coins);assert(run(`state.travelWins['${id}']>0`));}
 run(`state=JSON.parse(localStorage.getItem(KEY));ensureTravel()`);assert.equal(run('state.pet'),'dog');assert(run(`state.destinations.includes('valencia')`));console.log('PASS: all destination rendering/adventures, one-time unlocks/adoptions, insufficient funds, duplicate reward guard, save restoration.');
+
+run(`openGame('photo');game.target=2;game.motion=true;game.ap=3;game.sh=3;game.iso=3;$('ap').value=0;$('sh').value=-2;$('iso').value=0;shoot()`);assert(run('game.done'),'Shot must read current controls rather than stale slider state');
+run(`openGame('photo');switchMode('arcade');game.subject={x:game.target.x+8,y:game.target.y};captureFrame()`);assert.equal(run('game.frames'),1);assert(run(`$('feedback').textContent.includes('accepted')`),'Successful frame feedback persists');console.log('PASS: current slider readings, touch-friendly framing tolerance and visible accepted-shot feedback.');
