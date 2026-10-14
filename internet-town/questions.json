@@ -1,0 +1,176 @@
+{
+  "schema": 1,
+  "version": "2026-10-14.1",
+  "classes": {
+    "ops": [
+      [
+        "Which DMAIC stage comes first?",
+        "Define",
+        "Improve",
+        "Control",
+        "Analyze",
+        "Define states the problem and customer requirements."
+      ],
+      [
+        "Which chart ranks problem categories by frequency?",
+        "Pareto chart",
+        "Scatterplot",
+        "Control chart",
+        "Flowchart",
+        "A Pareto chart helps prioritize the most frequent categories."
+      ],
+      [
+        "Inspection belongs to which quality cost category?",
+        "Appraisal",
+        "Prevention",
+        "Internal failure",
+        "External failure",
+        "Appraisal checks whether output meets requirements."
+      ],
+      [
+        "A pull system starts production in response to what?",
+        "Downstream demand",
+        "A large forecast batch",
+        "Unused storage",
+        "Supplier pressure",
+        "Pull responds to actual downstream need."
+      ]
+    ],
+    "acct": [
+      [
+        "Contribution margin per unit equals what?",
+        "Price minus variable cost",
+        "Price minus fixed cost",
+        "Revenue minus assets",
+        "Fixed cost divided by units",
+        "Contribution covers fixed costs, then profit."
+      ],
+      [
+        "Equivalent units measure what?",
+        "Work expressed as fully completed units",
+        "Only physical units shipped",
+        "Only beginning inventory",
+        "Cash paid per unit",
+        "Equivalent units convert partially finished work into completed-unit terms."
+      ],
+      [
+        "Costs before split-off are called what?",
+        "Joint costs",
+        "Selling costs",
+        "Opportunity costs",
+        "Avoidable costs",
+        "Joint costs arise before products can be identified separately."
+      ],
+      [
+        "Which cost is irrelevant to a process-further decision?",
+        "Allocated joint cost already incurred",
+        "Added processing cost",
+        "Additional revenue",
+        "Avoidable future cost",
+        "An already incurred joint cost does not change between the alternatives."
+      ]
+    ],
+    "law": [
+      [
+        "Identification in a sale connects the contract to what?",
+        "Specific goods",
+        "Any future buyer",
+        "A payment method",
+        "A tax rate",
+        "Identification designates the goods covered by the contract."
+      ],
+      [
+        "Title refers to what?",
+        "Ownership",
+        "Possession only",
+        "Insurance only",
+        "Delivery speed",
+        "Title concerns ownership; possession is a separate concept."
+      ],
+      [
+        "An insurable interest concerns what?",
+        "An economic stake in the goods",
+        "Guaranteed ownership",
+        "A promised discount",
+        "A delivery route",
+        "An insurable interest reflects a stake that could suffer a loss."
+      ],
+      [
+        "Why distinguish title from possession?",
+        "A person can hold goods without owning them",
+        "They always pass together",
+        "Possession eliminates contracts",
+        "Title is only about insurance",
+        "Holding goods and owning goods are different concepts."
+      ]
+    ],
+    "comm": [
+      [
+        "Which opening best explains an audience-centered proposal?",
+        "The audience problem and proposed benefit",
+        "Every detail of your background",
+        "A long apology",
+        "Unexplained technical terms",
+        "Start with the need the audience recognizes and the benefit."
+      ],
+      [
+        "A clear pitch should end with what?",
+        "A specific ask",
+        "An unrelated joke",
+        "More background",
+        "A vague hope",
+        "A specific ask tells listeners what action to take."
+      ],
+      [
+        "Which slide is easiest to follow?",
+        "One main idea with supporting evidence",
+        "A full transcript",
+        "Several unrelated charts",
+        "Only unexplained acronyms",
+        "One main idea helps listeners track your point."
+      ],
+      [
+        "Which example best supports a claim?",
+        "A concrete result with relevant evidence",
+        "A vague compliment",
+        "A repeated slogan",
+        "An unrelated statistic",
+        "Evidence should directly support the claim being made."
+      ]
+    ],
+    "lit": [
+      [
+        "¿Qué es la voz poética?",
+        "La voz que habla en el poema",
+        "Siempre el autor histórico",
+        "El lector",
+        "El editor",
+        "La voz poética es quien habla; no se debe identificar automáticamente con el autor."
+      ],
+      [
+        "En un análisis de cita, ¿qué debes explicar?",
+        "Su importancia en la obra",
+        "Solo el número de página",
+        "Solo si te gusta",
+        "Solo la longitud",
+        "Relaciona la cita con personajes, temas, forma y contexto."
+      ],
+      [
+        "¿Qué es una obra anónima?",
+        "Una obra cuyo autor no se conoce",
+        "Una obra sin título",
+        "Una obra sin personajes",
+        "Una obra sin lectores",
+        "Anónimo se refiere a la autoría desconocida."
+      ],
+      [
+        "¿Qué distingue al narrador del autor?",
+        "El narrador es la voz que cuenta la historia",
+        "Son siempre la misma persona",
+        "El autor es un personaje siempre",
+        "El narrador publica el libro",
+        "El narrador pertenece al discurso de la obra; el autor es la persona que la escribió."
+      ]
+    ]
+  }
+}
