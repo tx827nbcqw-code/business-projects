@@ -44,3 +44,5 @@ run(`state=JSON.parse(localStorage.getItem(KEY));ensureTravel()`);assert.equal(r
 
 run(`openGame('photo');game.target=2;game.motion=true;game.ap=3;game.sh=3;game.iso=3;$('ap').value=0;$('sh').value=-2;$('iso').value=0;shoot()`);assert(run('game.done'),'Shot must read current controls rather than stale slider state');
 run(`openGame('photo');switchMode('arcade');game.subject={x:game.target.x+8,y:game.target.y};captureFrame()`);assert.equal(run('game.frames'),1);assert(run(`$('feedback').textContent.includes('accepted')`),'Successful frame feedback persists');console.log('PASS: current slider readings, touch-friendly framing tolerance and visible accepted-shot feedback.');
+
+for(const id of ['ops','acct','law','comm','lit']){run(`openGame('school');chooseSchoolClass('${id}')`);assert.equal(run('game.course'),id);run('answer(game.answer,{})');assert(run('game.done'));}console.log('PASS: all five selectable classes generate and complete questions.');
