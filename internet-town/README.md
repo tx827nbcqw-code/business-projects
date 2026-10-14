@@ -9,7 +9,7 @@ A small offline neighborhood connecting Coronda, photography, cooking, The Cente
 3. Disconnect Wi-Fi and play a round before traveling.
 4. Use **Export save** for a portable JSON backup. Import it to restore progress after changing devices or moving the HTML file.
 
-The game is entirely self-contained: HTML, CSS, JavaScript, canvas art, and optional synthesized audio. It makes no network requests. Mobile layouts and touch controls are included; some phone file-preview applications do not execute HTML games, so laptop browser playback is the recommended flight setup.
+The downloadable game contains all gameplay code, CSS, canvas art, and optional synthesized audio. It needs no remote assets. The hosted version additionally registers a local service worker to cache the game for phone playback. Wait for **Offline ready on this device** and test with airplane mode before travel. The hosted link is https://madmanphoto.com/internet-town/. Mobile layouts and touch controls are included; some phone file-preview applications do not execute HTML games, so laptop browser playback is the recommended flight setup.
 
 ## Activities
 
@@ -21,9 +21,9 @@ The game is entirely self-contained: HTML, CSS, JavaScript, canvas art, and opti
 | The Center Depot | Plan efficient delivery routes | Push a crate to its loading bay |
 | School Lab | Patterns, break-even, and rate reasoning | Spanish café and supplier conversations |
 
-Every completed challenge earns 30 XP. Buildings gain a level every 100 XP. Café shifts, recipe quantities, memory lists, warehouse layouts, and reasoning numbers vary or increase with progression. Some activities intentionally stay approachable and remix instead of adding difficulty indefinitely. A fifth-win bonus, nine town goals, five purchasable landmarks, and town stages create a shared progression loop.
+Every completed challenge earns 30 XP. Buildings gain a level every 100 XP. Café shifts, recipe quantities, memory lists, warehouse layouts, and reasoning numbers vary or increase with progression. Some activities intentionally stay approachable and remix instead of adding difficulty indefinitely. A fifth-win bonus, nine town goals, five purchasable landmarks, and town stages create a shared progression loop. Coins also buy outfits, hats, and world themes. Purchased cosmetics can be equipped for free. Skin tone selection is free, and owned landmarks can be repositioned by tapping an open spot in the walkable map.
 
-**Building view** gives direct access to games. **Explore on foot** provides a canvas town with WASD/arrows, touch controls, clickable shops, and day/dusk lighting. Purchased landmarks appear in the town.
+The default view is the walkable town. **Building view** gives direct access to games. **Explore on foot** provides a canvas town with WASD/arrows, touch controls, clickable shops, and day/dusk lighting. Purchased landmarks appear in the town.
 
 ## Saves and privacy
 
@@ -45,4 +45,4 @@ These are logic checks, not real browser interaction tests. Full browser visual 
 
 ## Files
 
-`index.html` is both the source and playable distribution; edit it directly. `check-game.cjs` is the logic regression harness. No package manager or build step is needed.
+`index.html` is both the source and playable distribution; edit it directly. `check-game.cjs` is the logic regression harness. No package manager or build step is needed. `sw.js`, `manifest.webmanifest`, and `icon.svg` provide optional hosted offline support; they are not required for a downloaded HTML file.

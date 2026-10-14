@@ -3,7 +3,7 @@ const html=fs.readFileSync(require('path').join(__dirname,'index.html'),'utf8');
 const nodes=new Map();class Node{constructor(){this.style={};this.value=0;this.innerHTML='';this.textContent='';this.open=false;this.disabled=false;this.classList={add(){},remove(){}}}focus(){}getContext(){return new Proxy({},{get:(o,k)=>()=>{}})}addEventListener(){}showModal(){this.open=true}close(){this.open=false}appendChild(n){}click(){}querySelectorAll(q){return Array.from({length:4},()=>new Node())}}
 const node=id=>{if(!nodes.has(id))nodes.set(id,new Node());return nodes.get(id)};let stored=null;
 let ctx={console,Math,Date,JSON,Set,Number,Infinity,Blob,URL:{createObjectURL(){return 'blob:test'},revokeObjectURL(){}},localStorage:{getItem(){return stored},setItem(k,v){stored=v}},document:{documentElement:{outerHTML:'<html></html>'},getElementById:node,querySelector:node,createElement(){return new Node()},addEventListener(){}},setTimeout(){},setInterval(){return 1},clearInterval(){},confirm(){return true},window:{addEventListener(){}},requestAnimationFrame(){return 1},cancelAnimationFrame(){}};vm.createContext(ctx);vm.runInContext(html.match(/<script>([\s\S]*)<\/script>/)[1],ctx);const run=s=>vm.runInContext(s,ctx);
-assert(!/https?:\/\//.test(html),'No network dependencies');
+assert(!/https?:\/\//.test(html),'No remote asset dependencies');
 for(let id of ['cafe','photo','kitchen','supply','school']){
  run(`openGame('${id}')`);
  if(id==='cafe')run(`$('leaf').value=game.grams*game.cups;$('water').value=game.grams*game.cups*game.ratio;serve()`);
@@ -29,8 +29,10 @@ for(let i=0;i<150;i++){run(`openGame('supply')`);assert(run('Number.isFinite(gam
 console.log('PASS: all 10 activities complete; rewards, purchases, town upgrades, wrong-answer guard, and 150 route/warehouse generations.');
 console.log('PASS: no external links, scripts, fonts or assets. Save payload valid:',JSON.parse(stored).version===1);
 
-run('toggleWalk();drawWorld(100);moveWalker(20,0);worldProximity();toggleWalk()');assert.equal(run('walking'),false);console.log('PASS: walk view render, movement and proximity routines execute.');
+run('if(!walking)toggleWalk();drawWorld(100);moveWalker(20,0);worldProximity();toggleWalk()');assert.equal(run('walking'),false);console.log('PASS: walk view render, movement and proximity routines execute.');
 run(`claimQuest(0)`);let claimedCoins=run('state.coins');run(`claimQuest(0)`);assert.equal(run('state.coins'),claimedCoins);console.log('PASS: quest rewards cannot be claimed twice.');
 run(`state.xp.supply=600`);for(let i=0;i<100;i++){run(`openGame('supply');switchMode('arcade')`);assert(run('solveWarehouse(game.w).length>0'),'Generated advanced warehouse must be solvable')}
 console.log('PASS: 100 higher-level generated warehouses have solutions.');
 run(`state.xp.cafe=900;openGame('cafe');switchMode('arcade');startRush(false);for(let i=0;i<game.orderCount;i++){game.cup={base:game.queue[i].base,fruit:game.queue[i].fruit,sweet:game.queue[i].sweet};rushServe()}`);assert(run('game.done'));assert(run('game.orderCount>5'));console.log('PASS: higher-level café shifts scale up and remain completable.');
+
+run(`state.coins=500;customize();buyCosmetic('terracotta')`);assert.equal(run('state.coins'),465);assert.equal(run('state.look.outfit'),'terracotta');run(`buyCosmetic('terracotta')`);assert.equal(run('state.coins'),465);run(`buyCosmetic('autumn')`);assert.equal(run('state.look.theme'),'autumn');assert.equal(run('state.coins'),365);run(`buyCosmetic('cap')`);assert.equal(run('state.look.hat'),'cap');console.log('PASS: cosmetics charge once, equip free, and apply world theme.');
