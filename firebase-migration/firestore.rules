@@ -1,0 +1,50 @@
+rules_version = '2';
+service cloud.firestore {
+ match /databases/{database}/documents {
+  function owner() { return request.auth != null
+   && request.auth.token.email == 'andreottati4@gmail.com'
+   && request.auth.token.email_verified == true
+   && request.auth.token.firebase.sign_in_provider == 'google.com'; }
+  function shortString(value, maximum) { return value is string && value.size() <= maximum; }
+  function anonymous() { return request.auth != null && request.auth.token.firebase.sign_in_provider == 'anonymous'; }
+  function validInquiry(id) {
+   let envelope=request.resource.data;
+   let d=envelope.value;
+   let limiter=getAfter(/databases/$(database)/documents/submissionLimits/$(request.auth.uid)).data;
+   return anonymous() && envelope.keys().hasOnly(['value','etag']) && envelope.etag == id
+    && d.keys().hasAll(['id','kind','status','source','client','email','phone','shootType','date','time','location','people','requests','sessionPackage','travelZone','marketingSource','smsConsent','createdAt','updatedAt','submittedBy','submittedAt'])
+    && d.keys().hasOnly(['id','kind','status','source','client','email','phone','shootType','date','time','location','people','requests','sessionPackage','travelZone','marketingSource','smsConsent','createdAt','updatedAt','submittedBy','submittedAt'])
+    && d.id==id && id.matches('web-[a-zA-Z0-9_-]{1,100}')
+    && d.kind=='inquiry' && d.status=='NEW' && d.source=='Website request'
+    && d.submittedBy==request.auth.uid && d.submittedAt==request.time
+    && limiter.lastSubmittedAt==request.time && limiter.recordId==id
+    && shortString(d.client,120) && d.client.size()>0
+    && shortString(d.email,254) && d.email.matches('[^ @]+@[^ @]+[.][^ @]+')
+    && shortString(d.phone,40) && shortString(d.location,500)
+    && d.shootType in ['Business / branding','Graduation / portraits','Couples','Family / expecting family','Wedding','Other — describe below']
+    && shortString(d.date,10) && (d.date=='' || d.date.matches('[0-9]{4}-[0-9]{2}-[0-9]{2}'))
+    && shortString(d.time,5) && (d.time=='' || d.time.matches('([01][0-9]|2[0-3]):[0-5][0-9]'))
+    && shortString(d.people,10) && shortString(d.requests,4000) && d.requests.size()>0
+    && shortString(d.sessionPackage,40) && shortString(d.travelZone,40) && shortString(d.marketingSource,120)
+    && d.smsConsent is bool && shortString(d.createdAt,30) && d.updatedAt==d.createdAt;
+  }
+  match /studioRecords/{id} {
+   allow read, update, delete: if owner();
+   allow create: if owner() || validInquiry(id);
+  }
+  match /studioSettings/{id} { allow read, write: if owner(); }
+  match /submissionLimits/{uid} {
+   function validLimit() { return anonymous() && request.auth.uid==uid
+    && request.resource.data.keys().hasOnly(['lastSubmittedAt','recordId'])
+    && request.resource.data.lastSubmittedAt==request.time
+    && request.resource.data.recordId is string
+    && request.resource.data.recordId.matches('web-[a-zA-Z0-9_-]{1,100}')
+    && getAfter(/databases/$(database)/documents/studioRecords/$(request.resource.data.recordId)).data.value.submittedAt==request.time
+    && getAfter(/databases/$(database)/documents/studioRecords/$(request.resource.data.recordId)).data.value.submittedBy==uid; }
+   allow create: if validLimit();
+   allow update: if validLimit() && request.time >= resource.data.lastSubmittedAt + duration.value(60,'s');
+   allow read, delete: if owner();
+  }
+  match /{document=**} { allow read, write: if false; }
+ }
+}
