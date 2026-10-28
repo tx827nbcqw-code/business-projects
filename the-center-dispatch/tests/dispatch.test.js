@@ -1,0 +1,13 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {chooseRoute,workerInstructions} from '../lib/router.js';
+import {dispatch} from '../lib/dispatch.js';
+import handler from '../api/dispatch.js';
+test('quick wins',()=>assert.equal(chooseRoute('Build the best possible project and combine two outputs','quick').kind,'single'));
+test('multi-output plan',()=>assert.equal(chooseRoute('Develop a pilot and combine economics and outreach').kind,'complementary'));
+test('independent choice',()=>assert.equal(chooseRoute('Compare two approaches and do an independent review').kind,'independent'));
+test('simple question is single',()=>assert.equal(chooseRoute('What is gross margin?').kind,'single'));
+test('workers have distinct roles',()=>{const x=workerInstructions('complementary','Design a pilot');assert.match(x[0],/EVIDENCE/);assert.match(x[1],/CREATIVE/)});
+test('true 2-worker then merge sequence',async()=>{let count=0;const invoke=async x=>({text:'text'+ ++count,model:x.model,usage:null});const r=await dispatch({message:'Develop a café pilot and combine costs and marketing.',key:'fake',openaiModel:'openai/mock',claudeModel:'anthropic/mock',invoke});assert.equal(count,3);assert.equal(r.answer,'text3');assert.equal(r.workers.length,2)});
+test('integration failure never appears merged',async()=>{let n=0;const invoke=async x=>{if(++n===3)throw Error('bad');return {text:'text'+n,model:x.model,usage:null}};const r=await dispatch({message:'Compare two approaches',key:'fake',openaiModel:'openai/mock',claudeModel:'anthropic/mock',invoke});assert.equal(r.status,'partial');assert.match(r.answer,/UNMERGED/)});
+test('missing keys fail closed',async()=>{const keys=['AI_GATEWAY_API_KEY','CENTER_ACCESS_TOKEN','OPENAI_MODEL','ANTHROPIC_MODEL'],old=keys.map(k=>process.env[k]);for(const k of keys)delete process.env[k];const res={setHeader(){},status(x){this.code=x;return this},json(x){this.body=x;return this}};try{await handler({method:'POST',headers:{}},res);assert.equal(res.code,503)}finally{keys.forEach((k,i)=>old[i]===undefined?delete process.env[k]:process.env[k]=old[i])}});
