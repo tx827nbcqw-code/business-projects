@@ -1,5 +1,5 @@
 import {account} from './customer-account.js';
-import {safeReturnPath} from './customer-model.mjs';
+import {safeReturnPath} from './customer-model.mjs?v=20261104-links';
 const $=s=>document.querySelector(s),params=new URLSearchParams(location.search);
 let mode=params.get('mode')==='signup'?'signup':'login',watchedUid=null,working=false;
 let catalog=[];
