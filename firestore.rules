@@ -1,0 +1,97 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Data model (all paths private to the UID in the path):
+    // customers/{uid}: name <=120, email <=254, phone <=40; updatedAt server timestamp.
+    // customers/{uid}/cart/{sha256}: photoId from static catalog; enumerated print
+    // options, integer quantity 1..100; updatedAt server timestamp. No price/role/status.
+    // customers/{uid}/drafts/booking: bounded form strings, consent booleans,
+    // stable UUID requestId, updatedAt server timestamp. Drafts are not reservations.
+    // customers/{uid}/drafts/print: UUID requestId, SHA-256 fingerprint, updatedAt;
+    // no contact or address fields. Keeps retries stable across page reloads.
+    // customers/{uid}/inquiries/{uuid}: immutable type, hubReference <=8000,
+    // summary <=50000, createdAt server timestamp. A receipt, never payment authority.
+    // Owner operations stay in the existing hub. Console access is governed by IAM.
+    function isOwner(uid) { return request.auth != null && request.auth.uid == uid; }
+    function profileExists(uid) { return exists(/databases/$(database)/documents/customers/$(uid)); }
+    function str(value, max) { return value is string && value.size() <= max; }
+    function emailMatches(value) { return str(value,254) && value == request.auth.token.email; }
+    function isValidProfile(d) {
+      return d.keys().hasAll(['name','email','phone','updatedAt'])
+        && d.keys().hasOnly(['name','email','phone','updatedAt'])
+        && str(d.name,120) && emailMatches(d.email) && str(d.phone,40)
+        && d.updatedAt == request.time;
+    }
+    function validPhoto(id) { return id in ["prints/a-quiet-corner.jpg", "prints/light-through-a-glass-frog.jpg", "prints/carrying-the-forest.jpg", "prints/gold-on-green.jpg", "prints/red-on-the-forest-floor.jpg", "prints/a-home-carried.jpg", "prints/city-meets-the-desert.jpg", "prints/cat-in-the-afternoon.jpg", "prints/town-beneath-the-peaks.jpg", "prints/rooms-beneath-the-mountains.jpg", "prints/street-at-last-light.jpg", "prints/along-the-stone-ramparts.jpg", "prints/shoreline-in-gold.jpg", "prints/market-under-the-trees.jpg", "prints/blue-boat-in-the-harbour.jpg", "field-003.jpg", "field-006.jpg", "field-007.jpg", "field-012.jpg", "field-015.jpg", "field-021.jpg", "field-022.jpg", "field-025.jpg", "field-027.jpg", "field-032.jpg", "field-036.jpg", "field-037.jpg", "field-038.jpg", "field-040.jpg", "field-047.jpg", "field-048.jpg", "field-054.jpg", "field-055.jpg", "field-058.jpg", "field-062.jpg", "field-064.jpg", "field-071.jpg", "field-077.jpg", "field-083.jpg", "field-086.jpg", "field-087.jpg", "field-095.jpg", "prints/flags-above-the-street.jpg", "prints/toward-the-mountains.jpg", "prints/pause-in-the-garden.jpg", "prints/game-below-the-rooftops.jpg", "prints/palm-and-stone.jpg", "prints/painting-by-the-arno.jpg", "prints/hidden-in-the-canopy.jpg", "prints/beneath-the-stone-arch.jpg", "prints/shadows-in-the-square.jpg", "prints/golden-arches.jpg", "DSC1371.jpg", "Halstatt---Madman-1.jpg", "DSC5135.jpg", "DSC1274.jpg", "prints/woodpecker.jpg", "prints/waterfall-canyon.jpg", "prints/blue-hour-car.jpg", "prints/river-rower.jpg"]; }
+    function isValidCart(d) {
+      return d.keys().hasAll(['photoId','size','paper','border','borderSize','delivery','quantity','updatedAt'])
+        && d.keys().hasOnly(['photoId','size','paper','border','borderSize','delivery','quantity','updatedAt'])
+        && validPhoto(d.photoId)
+        && d.size in ['8x10','12x18','16x24','20x30','Help me choose']
+        && d.paper in ['Moab Lasal Photo Matte 230','Hahnemühle Photo Rag Matt','Hahnemühle Cézanne Canvas','Help me choose']
+        && d.border in ['Borderless','White border']
+        && d.borderSize in [0,0.5,1,2]
+        && ((d.border == 'Borderless' && d.borderSize == 0) || (d.border == 'White border' && d.borderSize > 0))
+        && d.delivery == 'Shipping' && d.quantity is int && d.quantity >= 1 && d.quantity <= 100
+        && d.updatedAt == request.time;
+    }
+    function isValidDraft(d) {
+      return d.keys().hasAll(["client", "email", "phone", "shootType", "durationMinutes", "requestedImages", "people", "date", "time", "location", "travelZone", "marketingSource", "businessName", "businessWebsite", "businessNeeds", "businessUse", "requests", "smsConsent", "locationAdvice", "requestId", "updatedAt"]) && d.keys().hasOnly(["client", "email", "phone", "shootType", "durationMinutes", "requestedImages", "people", "date", "time", "location", "travelZone", "marketingSource", "businessName", "businessWebsite", "businessNeeds", "businessUse", "requests", "smsConsent", "locationAdvice", "requestId", "updatedAt"])
+        && str(d.client,120) && emailMatches(d.email) && str(d.phone,40)
+        && d.shootType in ['','Graduation / portraits','Portraits','Couples','Family / expecting family','Business / branding','Event','Wedding','Other — describe below']
+        && d.durationMinutes in ['30','45','60','90','120','180','240','360','480','600','720','all-day']
+        && d.requestedImages in ["5", "10", "15", "20", "25", "30", "35", "40", "45", "50", "55", "60", "65", "70", "75", "80", "85", "90", "95", "100", "105", "110", "115", "120", "125", "130", "135", "140", "145", "150"]
+        && str(d.people,4) && (d.people == '' || d.people.matches('^([1-9][0-9]{0,2}|1000)$'))
+        && str(d.date,10) && (d.date == '' || d.date.matches('^[0-9]{4}-[0-9]{2}-[0-9]{2}$'))
+        && str(d.time,5) && (d.time == '' || d.time.matches('^[0-9]{2}:[0-9]{2}$'))
+        && str(d.location,400) && d.travelZone in ['','local','near','far','custom']
+        && d.marketingSource in ['','Graduation flyer QR','Instagram','Referral','Website','Other']
+        && str(d.businessName,120) && str(d.businessWebsite,300)
+        && d.businessNeeds in ['','Brand story / mix of photographs','Owner or team portraits','People at work / services','Products and details','Workspace or interiors']
+        && str(d.businessUse,300) && str(d.requests,3000)
+        && d.smsConsent is bool && d.locationAdvice is bool
+        && str(d.requestId,36) && d.requestId.matches('^[a-f0-9-]{36}$')
+        && d.updatedAt == request.time;
+    }
+    function isValidPrintAttempt(d) {
+      return d.keys().hasAll(['requestId','fingerprint','updatedAt']) && d.keys().hasOnly(['requestId','fingerprint','updatedAt'])
+        && str(d.requestId,36) && d.requestId.matches('^[a-f0-9-]{36}$')
+        && str(d.fingerprint,64) && d.fingerprint.matches('^[a-f0-9]{64}$') && d.updatedAt == request.time;
+    }
+    function isValidInquiry(d) {
+      return d.keys().hasAll(['type','hubReference','summary','createdAt'])
+        && d.keys().hasOnly(['type','hubReference','summary','createdAt'])
+        && d.type in ['print','booking'] && str(d.hubReference,8000) && d.hubReference.size() > 0
+        && str(d.summary,50000) && d.summary.size() > 0 && d.createdAt == request.time;
+    }
+    match /customers/{uid} {
+      allow read: if isOwner(uid);
+      allow create: if isOwner(uid) && isValidProfile(request.resource.data);
+      allow update: if isOwner(uid) && isValidProfile(request.resource.data);
+      allow delete: if false;
+      match /cart/{lineId} {
+        allow read: if isOwner(uid);
+        allow create: if isOwner(uid) && profileExists(uid) && lineId.matches('^[a-f0-9]{64}$') && isValidCart(request.resource.data);
+        allow update: if isOwner(uid) && profileExists(uid) && isValidCart(request.resource.data)
+          && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['quantity','updatedAt']);
+        allow delete: if isOwner(uid);
+      }
+      match /drafts/{draftId} {
+        allow read: if isOwner(uid) && draftId in ['booking','print'];
+        allow create: if isOwner(uid) && profileExists(uid)
+          && ((draftId == 'booking' && isValidDraft(request.resource.data)) || (draftId == 'print' && isValidPrintAttempt(request.resource.data)));
+        allow update: if isOwner(uid) && profileExists(uid)
+          && ((draftId == 'booking' && isValidDraft(request.resource.data) && request.resource.data.requestId == resource.data.requestId)
+            || (draftId == 'print' && isValidPrintAttempt(request.resource.data)));
+        allow delete: if isOwner(uid) && draftId in ['booking','print'];
+      }
+      match /inquiries/{inquiryId} {
+        allow read: if isOwner(uid);
+        allow create: if isOwner(uid) && profileExists(uid) && request.auth.token.email_verified == true
+          && inquiryId.matches('^[a-f0-9-]{36}$') && isValidInquiry(request.resource.data);
+        allow update, delete: if false;
+      }
+    }
+    match /{document=**} { allow read, write: if false; }
+  }
+}
