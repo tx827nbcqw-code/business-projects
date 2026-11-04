@@ -63,6 +63,14 @@ pre{white-space:pre-wrap;word-break:break-word;background:#1f221e;color:#f8f6ef;
 .payopt p{margin:6px 0 0;color:#55584f;font-size:14px}
 .confirm{border:2px solid var(--moss);border-radius:6px;padding:14px;background:#f0f4ee}
 .price-hint{font-weight:700}
+.similar{margin-top:16px;border-top:1px solid var(--line);padding-top:12px}
+.similar h3{font-family:"Instrument Serif",Georgia,serif;font-weight:400;font-size:20px;margin:0 0 10px}
+.similar-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.similar-grid article{border:1px solid var(--line);border-radius:6px;overflow:hidden;background:#fff}
+.similar-grid img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block}
+.similar-grid .sim-body{padding:8px}
+.similar-grid .sim-body p{margin:0 0 8px;font-size:13px}
+.similar-grid button{width:100%;margin-top:6px;padding:8px;border:1px solid var(--gold);background:var(--paper-light);border-radius:6px;cursor:pointer;font:inherit;font-size:13px;font-weight:700}
 a{color:inherit}
 </style>
 </head>
@@ -282,11 +290,36 @@ function render(){
       addToCart({title:p.title, imageUrl:p.imageUrl, category:p.category, size:size, paper:controls.paper.value || 'Help me choose', border:controls.border.value, borderSize:controls.borderSize.value + ' in', signed:'Unsigned', delivery:controls.delivery.value, quantity:qty});
     });
     detail.appendChild(btn);
+    // More like this: same-category photos, shown right below Add to cart so the
+    // buyer can scroll down from the info inputs, add this print, and keep browsing
+    // similar prints without leaving the page or getting trapped in a panel.
+    const similar = document.createElement('div'); similar.className = 'similar';
+    const simH = document.createElement('h3'); simH.textContent = 'More like this'; similar.appendChild(simH);
+    const simNote = document.createElement('p'); simNote.className = 'muted'; simNote.textContent = 'Same category as this photograph. Scroll down and add any of these to your cart too.'; similar.appendChild(simNote);
+    const simGrid = document.createElement('div'); simGrid.className = 'similar-grid'; similar.appendChild(simGrid);
+    CATALOG.filter(q => q.category === p.category && q.title !== p.title).slice(0, 4).forEach(q => {
+      const art = document.createElement('article');
+      const simImg = document.createElement('img'); simImg.src = q.imageUrl; simImg.alt = q.title; simImg.loading = 'lazy';
+      const simBody = document.createElement('div'); simBody.className = 'sim-body';
+      const simTitle = document.createElement('p'); simTitle.textContent = q.title;
+      const simQuick = document.createElement('button'); simQuick.type = 'button'; simQuick.textContent = 'Quick add — 8 × 10, Moab matte';
+      simQuick.addEventListener('click', () => { addToCart({title:q.title, imageUrl:q.imageUrl, category:q.category, size:'8x10', paper:'Moab Lasal Photo Matte 230', border:'Borderless', borderSize:'0 in', signed:'Unsigned', delivery:'Shipping', quantity:1}); });
+      const simView = document.createElement('button'); simView.type = 'button'; simView.textContent = 'View & inquire';
+      simView.addEventListener('click', () => {
+        activeCat = q.category; searchText = ''; const sEl = document.getElementById('search'); if(sEl) sEl.value = '';
+        document.querySelectorAll('.filters button[data-cat]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.cat === activeCat)));
+        render();
+        const target = document.querySelector('article.card[data-title="' + q.title.replace(/"/g, '') + '"]');
+        if(target){ const ib = Array.from(target.querySelectorAll('button')).find(b => b.textContent === 'Inquire to Buy'); if(ib) ib.click(); else target.scrollIntoView({block:'start'}); }
+      });
+      simBody.append(simTitle, simQuick, simView); art.append(simImg, simBody); simGrid.appendChild(art);
+    });
+    detail.appendChild(similar);
     const quickBtn = document.createElement('button'); quickBtn.type = 'button'; quickBtn.className = 'inquire'; quickBtn.textContent = 'Quick add — 8 × 10, Moab matte';
     quickBtn.addEventListener('click', () => { addToCart({title:p.title, imageUrl:p.imageUrl, category:p.category, size:'8x10', paper:'Moab Lasal Photo Matte 230', border:'Borderless', borderSize:'0 in', signed:'Unsigned', delivery:'Shipping', quantity:1}); });
     body.appendChild(quickBtn);
     const inquireBtn = document.createElement('button'); inquireBtn.type = 'button'; inquireBtn.className = 'inquire'; inquireBtn.textContent = 'Inquire to Buy';
-    inquireBtn.addEventListener('click', () => { detail.hidden = !detail.hidden; inquireBtn.textContent = detail.hidden ? 'Inquire to Buy' : 'Close'; if(!detail.hidden) detail.scrollIntoView({block:'nearest'}); });
+    inquireBtn.addEventListener('click', () => { detail.hidden = !detail.hidden; inquireBtn.textContent = detail.hidden ? 'Inquire to Buy' : 'Close'; if(!detail.hidden) detail.scrollIntoView({block:'start'}); });
     body.appendChild(inquireBtn);
     card.append(previewWrap, body);
     grid.appendChild(card);
