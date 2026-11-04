@@ -5,7 +5,7 @@
   {"src":"prints/gold-on-green.jpg","title":"Gold on green","category":"wild","alt":"Two golden ants meet on a deep green leaf.","caption":"Two golden ants meet on a deep green leaf.","detail":"Nature · field notes","date":"undated"},
   {"src":"prints/red-on-the-forest-floor.jpg","title":"Red on the forest floor","category":"wild","alt":"A red-and-black frog rests among leaves on the forest floor.","caption":"A red-and-black frog rests among leaves on the forest floor.","detail":"Nature · field notes","date":"undated"},
   {"src":"prints/a-home-carried.jpg","title":"A home carried","category":"wild","alt":"A hermit crab carries its green-tinged shell across pale sand.","caption":"A hermit crab carries its green-tinged shell across pale sand.","detail":"Nature · field notes","date":"undated"},
-  {"src":"prints/between-shell-and-sand.jpg","title":"Between shell and sand","category":"wild","alt":"A close view of a hermit crab emerging from its shell on the sand.","caption":"A close view of a hermit crab emerging from its shell on the sand.","detail":"Nature · field notes","date":"undated"},
+  
   {"src":"prints/city-meets-the-desert.jpg","title":"Where the city meets the desert","category":"wild","alt":"Three people walking across golden desert earth with a city in the distance.","caption":"Three people walking across golden desert earth with a city in the distance.","detail":"Nature · field notes","date":"undated"},
   {"src":"prints/cat-in-the-afternoon.jpg","title":"A cat in the afternoon","category":"city","alt":"A small cat on a wall between sunlit buildings.","caption":"A small cat on a wall between sunlit buildings.","detail":"Travel · field notes","date":"undated"},
   {"src":"prints/town-beneath-the-peaks.jpg","title":"A town beneath the peaks","category":"city","alt":"A town street beneath a towering snow-covered mountain.","caption":"A town street beneath a towering snow-covered mountain.","detail":"Travel · field notes","date":"undated"},
@@ -206,15 +206,6 @@
     "date": "undated"
   },
   {
-    "src": "field-060.jpg",
-    "category": "city",
-    "title": "Florence afterglow",
-    "caption": "The city settles into amber as the day slips behind the rooftops.",
-    "alt": "Florence rooftops and the cathedral dome at sunset.",
-    "detail": "Florence · evening",
-    "date": "undated"
-  },
-  {
     "src": "field-062.jpg",
     "category": "road",
     "title": "The road after dark",
@@ -230,15 +221,6 @@
     "caption": "A quiet facade under a wide, clear sky.",
     "alt": "A historic church in a Bulgarian town beneath a blue sky.",
     "detail": "Bulgaria · architecture",
-    "date": "undated"
-  },
-  {
-    "src": "field-067.jpg",
-    "category": "road",
-    "title": "Along the river",
-    "caption": "A small boat moves past the bridges and buildings of the city.",
-    "alt": "A rowboat traveling on a European river beneath a bridge.",
-    "detail": "River crossing",
     "date": "undated"
   },
   {
@@ -293,15 +275,6 @@
     "caption": "A broad sweep of red earth and shadow beneath the fading sun.",
     "alt": "Red desert hills and open sand at sunset.",
     "detail": "Desert · sundown",
-    "date": "undated"
-  },
-  {
-    "src": "field-102.jpg",
-    "category": "wild",
-    "title": "Where the trail meets water",
-    "caption": "A waterfall drops through a green canyon, with a traveler for scale.",
-    "alt": "A tall waterfall in a green canyon with a person near its base.",
-    "detail": "Trail · waterfall",
     "date": "undated"
   },
   {
