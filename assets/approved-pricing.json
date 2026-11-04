@@ -1,0 +1,15 @@
+{
+  "version":"2026-11-04",
+  "approved":true,
+  "firstHour":40,
+  "additionalHour":15,
+  "allDay":150,
+  "perFivePhotos":5,
+  "minimumMinutes":30,
+  "maximumPhotos":150,
+  "photoStep":5,
+  "travel":{"local":0,"near":20,"far":35,"custom":null},
+  "sourceSpreadsheetId":"1Uq0B4oE7Z1nMSOvWIfay5Bg5w_WNO3FUcFdGJ_eQoKc",
+  "sourceRange":"Rates!A5:B16",
+  "verifiedAt":"2026-11-04T13:30:00Z"
+}

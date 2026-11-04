@@ -1,4 +1,39 @@
 [
+  {"src":"prints/a-quiet-corner.jpg","title":"A quiet corner","category":"city","alt":"A person seated beside a warm terracotta wall and a yellow barrier.","caption":"A person seated beside a warm terracotta wall and a yellow barrier.","detail":"Travel · field notes","date":"undated"},
+  {"src":"prints/light-through-a-glass-frog.jpg","title":"Light through a glass frog","category":"wild","alt":"A translucent green frog seen from below against a dark background.","caption":"A translucent green frog seen from below against a dark background.","detail":"Nature · field notes","date":"undated"},
+  {"src":"prints/carrying-the-forest.jpg","title":"Carrying the forest","category":"wild","alt":"Leaf-carrying ants cross a green mossy surface.","caption":"Leaf-carrying ants cross a green mossy surface.","detail":"Nature · field notes","date":"undated"},
+  {"src":"prints/gold-on-green.jpg","title":"Gold on green","category":"wild","alt":"Two golden ants meet on a deep green leaf.","caption":"Two golden ants meet on a deep green leaf.","detail":"Nature · field notes","date":"undated"},
+  {"src":"prints/red-on-the-forest-floor.jpg","title":"Red on the forest floor","category":"wild","alt":"A red-and-black frog rests among leaves on the forest floor.","caption":"A red-and-black frog rests among leaves on the forest floor.","detail":"Nature · field notes","date":"undated"},
+  {"src":"prints/a-home-carried.jpg","title":"A home carried","category":"wild","alt":"A hermit crab carries its green-tinged shell across pale sand.","caption":"A hermit crab carries its green-tinged shell across pale sand.","detail":"Nature · field notes","date":"undated"},
+  {"src":"prints/between-shell-and-sand.jpg","title":"Between shell and sand","category":"wild","alt":"A close view of a hermit crab emerging from its shell on the sand.","caption":"A close view of a hermit crab emerging from its shell on the sand.","detail":"Nature · field notes","date":"undated"},
+  {"src":"prints/city-meets-the-desert.jpg","title":"Where the city meets the desert","category":"wild","alt":"Three people walking across golden desert earth with a city in the distance.","caption":"Three people walking across golden desert earth with a city in the distance.","detail":"Nature · field notes","date":"undated"},
+  {"src":"prints/cat-in-the-afternoon.jpg","title":"A cat in the afternoon","category":"city","alt":"A small cat on a wall between sunlit buildings.","caption":"A small cat on a wall between sunlit buildings.","detail":"Travel · field notes","date":"undated"},
+  {"src":"prints/town-beneath-the-peaks.jpg","title":"A town beneath the peaks","category":"city","alt":"A town street beneath a towering snow-covered mountain.","caption":"A town street beneath a towering snow-covered mountain.","detail":"Travel · field notes","date":"undated"},
+  {"src":"prints/rooms-beneath-the-mountains.jpg","title":"Rooms beneath the mountains","category":"city","alt":"A vintage hotel sign beneath pale mountain peaks.","caption":"A vintage hotel sign beneath pale mountain peaks.","detail":"Travel · field notes","date":"undated"},
+  {"src":"prints/street-at-last-light.jpg","title":"The street at last light","category":"city","alt":"A person crossing a sunlit street between warm stone buildings.","caption":"A person crossing a sunlit street between warm stone buildings.","detail":"Travel · field notes","date":"undated"},
+  {"src":"prints/along-the-stone-ramparts.jpg","title":"Along the stone ramparts","category":"wild","alt":"Stone towers and ramparts climb a rocky green hillside.","caption":"Stone towers and ramparts climb a rocky green hillside.","detail":"Nature · field notes","date":"undated"},
+  {"src":"prints/shoreline-in-gold.jpg","title":"Shoreline in gold","category":"wild","alt":"People beside the water at a sunlit shore, with a small island beyond.","caption":"People beside the water at a sunlit shore, with a small island beyond.","detail":"Nature · field notes","date":"undated"},
+  {"src":"prints/market-under-the-trees.jpg","title":"Market under the trees","category":"city","alt":"An outdoor market with vendors and tables beneath leafy trees.","caption":"An outdoor market with vendors and tables beneath leafy trees.","detail":"Travel · field notes","date":"undated"},
+  {"src":"prints/blue-boat-in-the-harbour.jpg","title":"Blue boat in the harbour","category":"road","alt":"A blue fishing boat moored in a harbour beneath hillside homes.","caption":"A blue fishing boat moored in a harbour beneath hillside homes.","detail":"Travel · field notes","date":"undated"},
+  {"src":"shoots/manny-barber-09.svg","category":"business","title":"Meet the barber","caption":"Barber business photography · Meet the barber.","alt":"A barber portrait beside an illuminated barber pole","detail":"Manny Muniz · Barber business shoot","date":"undated"},
+  {"src":"shoots/manny-barber-03.svg","category":"business","title":"The craft in motion","caption":"Barber business photography · The craft in motion.","alt":"A barber working with a client beneath bright shop lights","detail":"Manny Muniz · Barber business shoot","date":"undated"},
+  {"src":"shoots/manny-barber-10.svg","category":"business","title":"Scissors and comb","caption":"Barber business photography · Scissors and comb.","alt":"Scissors and a red comb in close-up","detail":"Manny Muniz · Barber business shoot","date":"undated"},
+  {"src":"shoots/manny-barber-04.svg","category":"business","title":"Through the mirror","caption":"Barber business photography · Through the mirror.","alt":"A barber and client reflected in the shop mirror","detail":"Manny Muniz · Barber business shoot","date":"undated"},
+  {"src":"shoots/manny-barber-05.svg","category":"business","title":"Focused on the cut","caption":"Barber business photography · Focused on the cut.","alt":"A barber concentrating on a haircut","detail":"Manny Muniz · Barber business shoot","date":"undated"},
+  {"src":"shoots/manny-barber-02.svg","category":"business","title":"Finishing touches","caption":"Barber business photography · Finishing touches.","alt":"A barber styling a client's hair with a spray can","detail":"Manny Muniz · Barber business shoot","date":"undated"},
+  {"src":"shoots/manny-barber-08.svg","category":"business","title":"Ready for the next client","caption":"Barber business photography · Ready for the next client.","alt":"A barber preparing tools at his workstation","detail":"Manny Muniz · Barber business shoot","date":"undated"},
+  {"src":"shoots/manny-barber-01.svg","category":"business","title":"At the chair","caption":"Barber business photography · At the chair.","alt":"A barber at work beside a client in a brick-walled shop","detail":"Manny Muniz · Barber business shoot","date":"undated"},
+  {"src":"shoots/manny-barber-07.svg","category":"business","title":"Tools of the trade","caption":"Barber business photography · Tools of the trade.","alt":"A gloved hand holding scissors in close-up","detail":"Manny Muniz · Barber business shoot","date":"undated"},
+  {"src":"shoots/manny-barber-06.svg","category":"business","title":"Behind the chair","caption":"Barber business photography · Behind the chair.","alt":"The back of a barber as he works with a client","detail":"Manny Muniz · Barber business shoot","date":"undated"},
+  {"src":"shoots/adventhealth-ready-for-the-game.jpg","category":"business","collection":"adventhealth","title":"Ready for the game","alt":"A player in a blue AdventHealth warm-up top on the basketball court.","caption":"A player in a blue AdventHealth warm-up top on the basketball court.","detail":"AdventHealth · sports & event photography","date":"undated"},
+  {"src":"shoots/adventhealth-on-court.jpg","category":"business","collection":"adventhealth","title":"On court","alt":"A Southern intramural basketball player beside an AdventHealth banner.","caption":"A Southern intramural basketball player beside an AdventHealth banner.","detail":"AdventHealth · sports & event photography","date":"undated"},
+  {"src":"shoots/adventhealth-mens-team.jpg","category":"business","collection":"adventhealth","title":"The team together","alt":"Six players in blue AdventHealth tops posing in front of the branded backdrop.","caption":"Six players in blue AdventHealth tops posing in front of the branded backdrop.","detail":"AdventHealth · sports & event photography","date":"undated"},
+  {"src":"shoots/adventhealth-womens-team.jpg","category":"business","collection":"adventhealth","title":"A team moment","alt":"A Southern intramural team posing in front of the AdventHealth backdrop.","caption":"A Southern intramural team posing in front of the AdventHealth backdrop.","detail":"AdventHealth · sports & event photography","date":"undated"},
+  {"src":"shoots/adventhealth-award-portrait.jpg","category":"business","collection":"adventhealth","title":"With the trophy","alt":"A basketball player holding a clear award in front of an AdventHealth backdrop.","caption":"A basketball player holding a clear award in front of an AdventHealth backdrop.","detail":"AdventHealth · sports & event photography","date":"undated"},
+  {"src":"shoots/adventhealth-above-the-rim.jpg","category":"business","collection":"adventhealth","title":"Above the rim","alt":"A basketball player hanging from the rim after a dunk.","caption":"A basketball player hanging from the rim after a dunk.","detail":"AdventHealth · sports & event photography","date":"undated"},
+  {"src":"shoots/adventhealth-brand-detail.jpg","category":"business","collection":"adventhealth","title":"The brand in the details","alt":"An AdventHealth basketball on a blue table against the branded backdrop.","caption":"An AdventHealth basketball on a blue table against the branded backdrop.","detail":"AdventHealth · sports & event photography","date":"undated"},
+  {"src":"shoots/adventhealth-event-team.jpg","category":"business","collection":"adventhealth","title":"The people behind the event","alt":"An AdventHealth event team behind a table with branded materials and drinks.","caption":"An AdventHealth event team behind a table with branded materials and drinks.","detail":"AdventHealth · sports & event photography","date":"undated"},
+  {"src":"shoots/adventhealth-player-award.jpg","category":"business","collection":"adventhealth","title":"A moment to celebrate","alt":"A player in a blue AdventHealth top holding an award.","caption":"A player in a blue AdventHealth top holding an award.","detail":"AdventHealth · sports & event photography","date":"undated"},
   {
     "src": "field-003.jpg",
     "category": "city",
@@ -429,6 +464,96 @@
     "caption": "A close study of two wedding rings against dark fabric.",
     "alt": "Two wedding rings arranged together on dark fabric.",
     "detail": "Wedding · rings",
+    "date": "undated"
+  },
+  {
+    "src": "prints/flags-above-the-street.jpg",
+    "title": "Flags above the street",
+    "category": "city",
+    "alt": "Regional flags strung above a sunlit street.",
+    "caption": "Regional flags strung above a sunlit street.",
+    "detail": "Travel · everyday moments",
+    "date": "undated"
+  },
+  {
+    "src": "prints/toward-the-mountains.jpg",
+    "title": "Toward the mountains",
+    "category": "city",
+    "alt": "A narrow old street opens toward snow-covered mountains.",
+    "caption": "A narrow old street opens toward snow-covered mountains.",
+    "detail": "Travel · everyday moments",
+    "date": "undated"
+  },
+  {
+    "src": "prints/pause-in-the-garden.jpg",
+    "title": "A pause in the garden",
+    "category": "city",
+    "alt": "A person seated on a bench beneath palms and bare branches.",
+    "caption": "A person seated on a bench beneath palms and bare branches.",
+    "detail": "Travel · everyday moments",
+    "date": "undated"
+  },
+  {
+    "src": "prints/game-below-the-rooftops.jpg",
+    "title": "The game below the rooftops",
+    "category": "city",
+    "alt": "Players on a green court among hillside buildings and tall trees.",
+    "caption": "Players on a green court among hillside buildings and tall trees.",
+    "detail": "Travel · everyday moments",
+    "date": "undated"
+  },
+  {
+    "src": "prints/palm-and-stone.jpg",
+    "title": "Palm and stone",
+    "category": "city",
+    "alt": "A palm tree beside warm stone architecture and arched galleries.",
+    "caption": "A palm tree beside warm stone architecture and arched galleries.",
+    "detail": "Travel · everyday moments",
+    "date": "undated"
+  },
+  {
+    "src": "prints/painting-by-the-arno.jpg",
+    "title": "Painting by the Arno",
+    "category": "city",
+    "alt": "An artist paints the riverside architecture of Florence.",
+    "caption": "An artist paints the riverside architecture of Florence.",
+    "detail": "Travel · everyday moments",
+    "date": "undated"
+  },
+  {
+    "src": "prints/hidden-in-the-canopy.jpg",
+    "title": "Hidden in the canopy",
+    "category": "wild",
+    "alt": "A monkey framed by dark leaves and light in the canopy.",
+    "caption": "A monkey framed by dark leaves and light in the canopy.",
+    "detail": "Nature · observation",
+    "date": "undated"
+  },
+  {
+    "src": "prints/beneath-the-stone-arch.jpg",
+    "title": "Beneath the stone arch",
+    "category": "city",
+    "alt": "People and long shadows beneath an old stone arch, in black and white.",
+    "caption": "People and long shadows beneath an old stone arch, in black and white.",
+    "detail": "Travel · everyday moments",
+    "date": "undated"
+  },
+  {
+    "src": "prints/shadows-in-the-square.jpg",
+    "title": "Shadows in the square",
+    "category": "city",
+    "alt": "People and a dog casting long shadows across a cobbled square, in black and white.",
+    "caption": "People and a dog casting long shadows across a cobbled square, in black and white.",
+    "detail": "Travel · everyday moments",
+    "date": "undated"
+  },
+  {
+    "src": "prints/golden-arches.jpg",
+    "title": "Golden arches",
+    "category": "city",
+    "alt": "Sunlit brick arches and a decorated tower beneath a clear blue sky.",
+    "caption": "Sunlit brick arches and a decorated tower beneath a clear blue sky.",
+    "detail": "Travel · everyday moments",
     "date": "undated"
   }
 ]
