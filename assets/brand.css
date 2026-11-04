@@ -1,0 +1,2 @@
+/* Canonical approved mountain-and-branch artwork, shown as a circular badge. */
+.brand img,.brand-mark{border-radius:50%;clip-path:circle(50%);object-fit:cover;aspect-ratio:1;flex-shrink:0}

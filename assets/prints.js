@@ -298,7 +298,6 @@ if(incomingPrint)requestAnimationFrame(()=>Array.from(grid.children).find(card=>
 updateCart();
 
 account.onChange(({user,profile,problem})=>{
-  document.querySelectorAll('[data-account-link]').forEach(el=>el.textContent=user?'My account':'Log in');
   if(user?.uid===cartUid&&user){if(profile&&!$('#checkout').contains(document.activeElement)){const f=$('#checkout').elements;f.client.value=f.client.value||profile.name||'';f.phone.value=f.phone.value||profile.phone||'';}return;}
   cartUid=user?.uid||null;cart=[];cartReady=false;attempt=null;$('#checkout').reset();$('#preview').textContent='';$('#preview').hidden=true;$('#copy-preview').hidden=true;$('#order-confirmation').replaceChildren();$('#order-confirmation').hidden=true;$('#cartpanel').close();updateCart();
   if(!user){cartStatus(problem||'Browse freely. Log in to save your print cart.',!!problem);return;}

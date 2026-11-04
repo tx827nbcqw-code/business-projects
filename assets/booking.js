@@ -63,7 +63,6 @@ import {bookingDraft} from './customer-model.mjs';
  }
  for(const event of ['input','change'])form.addEventListener(event,()=>{if(!activeUid||done||busy)return;clearTimeout(draftTimer);status('Changes waiting to save…');draftTimer=setTimeout(()=>saveDraft().catch(()=>{}),700);});
  account.onChange(async({user,profile,problem})=>{
-   document.querySelectorAll('[data-account-link]').forEach(el=>{el.textContent=user?'My account':'Log in';});
    if(!user){
      if(done){location.reload();return;}requestId=crypto.randomUUID();
      activeUid=null;clearTimeout(draftTimer);access.disabled=true;notice.hidden=false;form.reset();reviewedData=null;receipt=null;review.hidden=true;details.hidden=false;document.querySelector('#intro').hidden=false;configure();status(problem||'Log in to save your booking details.',!!problem);return;
