@@ -11,8 +11,17 @@ export function cartIdentity(item){
   return JSON.stringify([item.photoId,item.size,item.paper,item.border,item.borderSize,item.delivery]);
 }
 export function safeReturnPath(value){
-  try{const url=new URL(value,'https://madmanphoto.com');return url.origin==='https://madmanphoto.com'&&['/prints/','/book/','/account/'].includes(url.pathname)?url.pathname+url.search:'/account/';}
-  catch{return '/account/';}
+  try{const url=new URL(value||'/','https://madmanphoto.com');return url.origin==='https://madmanphoto.com'&&['/','/prints/','/book/'].includes(url.pathname)?url.pathname+url.search:'/';}
+  catch{return '/';}
+}
+export function selectedPrint(value,catalog){
+  if(!value)return null;
+  try{
+    const url=new URL(value,'https://madmanphoto.com');
+    if(url.origin==='https://tx827nbcqw-code.github.io')url.pathname=url.pathname.replace(/^\/business-projects\//,'/');
+    else if(!['https://madmanphoto.com','https://www.madmanphoto.com'].includes(url.origin))return null;
+    return catalog.find(photo=>'/assets/'+photo.src===url.pathname)||null;
+  }catch{return null;}
 }
 export function compatiblePrintSize(size,options){
   const normalize=value=>String(value).toLowerCase().replaceAll('×','x').replace(/\s/g,'');

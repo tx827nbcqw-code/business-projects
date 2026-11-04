@@ -5,24 +5,25 @@
 <header><a class="brand" href="/"><img src="/assets/madman-logo-v8.png" width="48" height="48" alt="Madman Photography logo"><span>MADMAN<small>PHOTOGRAPHY BY ANDRE OTTATI</small></span></a><nav aria-label="Studio navigation"><a href="/prints/">Prints</a><a href="/book/">Book a session</a></nav></header>
 <main>
 <section class="account-layout" id="signed-out">
-  <div class="account-intro"><p class="eyebrow">A LITTLE SPACE OF YOUR OWN</p><h1>Keep what<br>catches your eye.</h1><p>Your print cart and booking details, saved to your account. Pick up where you left off, here or on another device.</p><figure><img src="/assets/booking-florence.jpg" width="1200" height="1800" alt="Warm evening light over the Arno in Florence"><figcaption>Photographs by Andre Ottati</figcaption></figure></div>
   <section class="card account-form" aria-labelledby="auth-title">
-    <p class="eyebrow">MADMAN PHOTOGRAPHY</p><h2 id="auth-title">Welcome back.</h2><p id="auth-description" class="muted">Log in to find your saved photographs and session details.</p>
+    <p class="eyebrow">MADMAN PHOTOGRAPHY</p><h1 id="auth-title">Log in.</h1><p id="auth-description" class="muted">Save your cart and booking details.</p>
     <form id="auth-form"><label id="signup-name" hidden>Your name<input name="name" autocomplete="name" maxlength="120"></label><label>Email<input name="email" type="email" autocomplete="username" required maxlength="254"></label><label>Password<input name="password" type="password" autocomplete="current-password" required maxlength="128"></label><small id="password-help" hidden>Use at least 12 characters. Your password is handled by Firebase Authentication.</small><button type="submit" id="auth-submit" disabled>Log in</button></form>
     <button type="button" id="reset-password" class="text-button">Forgot your password?</button>
     <div class="auth-divider"><span>or</span></div><button type="button" class="secondary" id="google-login" disabled>Continue with Google</button>
     <p class="muted" id="mode-prompt">New here? <button type="button" id="switch-mode" class="text-button">Create an account</button></p>
     <p id="auth-result" role="status" aria-live="polite" class="save-status">Connecting to your account…</p>
-    <p class="privacy-note">We save your contact details, cart and booking information to help with your inquiries. No payment information is collected. <a href="/privacy/">Privacy &amp; account help</a></p>
+    <p class="privacy-note"><a href="/privacy/">Privacy &amp; account help</a></p>
   </section>
 </section>
 <section id="signed-in" hidden>
-  <div class="account-heading"><div><p class="eyebrow">YOUR MADMAN ACCOUNT</p><h1 id="welcome">Welcome back.</h1><p class="muted" id="account-email"></p></div><button type="button" class="secondary" id="logout">Log out</button></div>
-  <aside id="verification-notice" class="account-notice" hidden><h2>One small step.</h2><p>Verify your email before sending an inquiry. You can save your cart and booking details while you wait.</p><div class="gate-actions"><button type="button" id="send-verification" class="secondary">Send verification email</button><button type="button" id="check-verification">I’ve verified my email</button></div></aside>
+  <div class="account-heading"><div><h1 id="welcome">Your cart.</h1><p class="muted" id="account-email"></p></div><button type="button" class="secondary" id="logout">Log out</button></div>
+  <aside id="verification-notice" class="account-notice" hidden><p>Verify your email before sending an inquiry.</p><div class="gate-actions"><button type="button" id="send-verification" class="secondary">Send verification email</button><button type="button" id="check-verification">I’ve verified my email</button></div></aside>
   <p id="account-result" role="status" aria-live="polite" class="save-status"></p>
-  <div class="account-links"><a class="card" href="/prints/"><p class="eyebrow">YOUR PRINTS</p><h2>Back to your cart ↗</h2><p class="muted">Browse, choose, and keep a few favorites.</p></a><a class="card" href="/book/"><p class="eyebrow">YOUR SESSION</p><h2>Plan something good ↗</h2><p class="muted">Continue your saved booking inquiry.</p></a></div>
-  <div class="account-detail-grid"><section class="card"><p class="eyebrow">YOUR DETAILS</p><h2>A familiar face.</h2><form id="profile-form"><label>Your name<input name="name" required maxlength="120" autocomplete="name"></label><label>Phone <span class="optional">(optional)</span><input name="phone" type="tel" maxlength="40" autocomplete="tel"></label><button type="submit">Save details</button></form><p class="muted">Used for your photography and print inquiries. Your email is managed through your sign-in account.</p></section><section class="card"><p class="eyebrow">SENT INQUIRIES</p><h2>The next chapter.</h2><p class="muted">Inquiries aren’t confirmed orders or reservations. Andre confirms the details personally.</p><div id="inquiry-history"><p class="muted">Loading your inquiries…</p></div></section></div>
-  <p class="privacy-note">Need your account or saved information removed? <a href="mailto:ottati.a.andre@gmail.com?subject=Madman%20Photography%20account%20help">Contact Andre</a> from your account email.</p>
+  <section id="account-cart" aria-label="Saved cart" aria-live="polite"><p>Loading your cart…</p></section>
+  <div class="gate-actions account-cart-actions"><a class="button" id="review-cart" href="/prints/?cart=1" hidden>Review cart</a><a class="button secondary" href="/">Back to home</a><a href="/prints/">Browse prints</a><a href="/book/">Booking details</a></div>
+  <details class="account-section"><summary>Your details</summary><form id="profile-form"><label>Your name<input name="name" required maxlength="120" autocomplete="name"></label><label>Phone <span class="optional">(optional)</span><input name="phone" type="tel" maxlength="40" autocomplete="tel"></label><button type="submit">Save &amp; return home</button></form></details>
+  <details class="account-section"><summary>Sent inquiries</summary><div id="inquiry-history"><p class="muted">Loading…</p></div></details>
+  <p class="privacy-note"><a href="/privacy/">Privacy &amp; account help</a></p>
 </section>
 <noscript><p>Enable JavaScript to log in, or <a href="mailto:ottati.a.andre@gmail.com">contact Andre directly</a>.</p></noscript>
 </main><footer>Madman Photography · Collegedale &amp; Chattanooga</footer>
