@@ -2,6 +2,7 @@ import {test} from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import vm from 'node:vm';
+import {printMatchesQuery} from '../assets/customer-model.mjs';
 const context={};vm.runInNewContext(fs.readFileSync('assets/booking-pricing.js','utf8'),context);
 const rates=JSON.parse(fs.readFileSync('assets/approved-pricing.json','utf8'));
 const estimate=data=>context.MadmanPricing.estimate(rates,data);
@@ -27,4 +28,52 @@ test('print prices match the previously published customer amounts',()=>{
   const expected={'Moab Lasal Photo Matte 230':[15.56,37.65,62.35,91.25],'Hahnemühle Photo Rag Matt':[26.67,52.94,78.82,130],'Hahnemühle Cézanne Canvas':[26.67,52.94,78.82,130]};
   for(const [paper,values] of Object.entries(expected))assert.deepEqual(Object.values(prices[paper]),values);
   assert.ok(!js.includes('LAB_COST'));assert.ok(!js.includes('_dev_note'));
+});
+
+test('print search finds a photograph by subject, place or file name, not only its title',()=>{
+  const catalog=JSON.parse(fs.readFileSync('assets/print-catalog.json','utf8'));
+  const find=query=>catalog.filter(p=>printMatchesQuery(p,query)).map(p=>p.title);
+  assert.deepEqual(find('woodpecker'),['Quiet attention']);
+  assert.ok(find('frog').length>=2,'frog should match more than one photograph');
+  assert.ok(find('tram').length>=2,'tram should match the transit photographs');
+  assert.ok(find('nature').length>=19,'the Nature / Wild category should be searchable');
+  assert.ok(find('  FROG  ').length>=2,'search should ignore case and surrounding spaces');
+  assert.equal(find('frog portrait').length,0,'every word in a query has to match');
+  assert.equal(find('').length,catalog.length,'an empty query keeps the whole catalog');
+});
+
+test('booking entry intent survives the login round trip',()=>{
+  const js=fs.readFileSync('assets/booking.js','utf8');
+  assert.match(js,/const entryType=new URLSearchParams\(location\.search\)\.get\('type'\)/);
+  assert.match(js,/form\.reset\(\);applyEntryType\(\)/,'the signed-out reset must reapply the entry type');
+  assert.match(js,/else applyEntryType\(\)/,'a saved draft still takes precedence over the entry type');
+  assert.ok(js.includes("url.searchParams.set('return',returnPath)"),'login links must carry the intent');
+  const html=fs.readFileSync('book/index.html','utf8');
+  assert.ok(html.includes('booking.js?v=20261123-intent'),'the booking script needs a new cache-busting version');
+  assert.ok(fs.readFileSync('prints/index.html','utf8').includes('prints.js?v=20261123-buyer'));
+});
+
+test('a print chosen before login reaches the cart after sign-in',()=>{
+  const js=fs.readFileSync('assets/prints.js','utf8');
+  assert.match(js,/if\(!account\.user\)\{rememberPendingPrint\(item\)/,'the choice must be held across the gate');
+  assert.match(js,/if\(saved\)\{const pending=takePendingPrint\(\)/,'it must be added once the saved cart is ready');
+  assert.match(js,/removeItem\(PENDING_PRINT\)/,'the held choice must be consumed only once');
+  assert.ok(js.includes("'Add to cart — 8 × 10 · ' + money("),'the buy button must state the price');
+  assert.ok(!js.includes('Inquire to Buy'),'the ambiguous second label is gone');
+});
+
+test('the homepage reaches photographs and booking before the soundtrack',()=>{
+  const html=fs.readFileSync('index.html','utf8');
+  assert.ok(html.indexOf('id="stories"')<html.indexOf('id="soundtrack"'),'shop content comes before the music');
+  assert.ok(html.indexOf('id="booking"')<html.indexOf('id="soundtrack"'),'booking comes before the music');
+  assert.equal((html.match(/id="soundtrack"/g)||[]).length,1,'the soundtrack stays on the page, once');
+});
+
+test('each print compares all four sizes and their prices before adding',()=>{
+  const js=fs.readFileSync('assets/prints.js','utf8');
+  assert.match(js,/const priceTable = document\.createElement\('div'\); priceTable\.className = 'size-prices'/);
+  assert.match(js,/amount\.textContent = money\(PRINT_PRICES\[paper\]\[key\]\)/,'every size shows its price');
+  assert.match(js,/controls\.size\.value = key; updateHint\(\)/,'choosing a size is one click');
+  assert.ok(js.includes("'Choose a paper to compare prices by size.'"),'an unpriced paper says why');
+  assert.ok(fs.readFileSync('assets/prints.css','utf8').includes('.size-price.is-active'));
 });
