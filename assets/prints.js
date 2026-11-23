@@ -80,6 +80,7 @@ function render(){
     const qlab = document.createElement('label'); const qsp = document.createElement('span'); qsp.textContent = 'Quantity'; qlab.appendChild(qsp);
     const qin = document.createElement('input'); qin.type = 'number'; qin.min = '1'; qin.max = '100'; qin.value = '1'; qlab.appendChild(qin); detail.appendChild(qlab);
     const hint = document.createElement('p'); hint.className = 'price-hint muted'; detail.appendChild(hint);
+    const priceTable = document.createElement('div'); priceTable.className = 'size-prices'; priceTable.setAttribute('role','group'); priceTable.setAttribute('aria-label','Price by print size'); detail.appendChild(priceTable);
     const paperDesc = document.createElement('p'); paperDesc.className = 'paper-desc muted'; detail.appendChild(paperDesc);
     const cropNote = document.createElement('p'); cropNote.className = 'crop-note muted'; detail.appendChild(cropNote);
     function updatePreview(){
@@ -120,7 +121,26 @@ function render(){
       const qty = Math.max(1, Math.min(100, parseInt(qin.value, 10) || 1));
       // Customer-facing hint: price only. Lab cost and margin stay in the internal pricing file, never in the UI.
       hint.textContent = u === null ? 'Price to confirm — pick a size and paper; shipping & tax confirmed by Andre.' : 'Price: ' + money(u) + ' per print · ' + money(u * qty) + ' for ' + qty + ' print(s). Shipping & tax confirmed by Andre. Changing size, paper, border, or quantity updates this price.';
+      renderSizePrices();
       updatePreview();
+    }
+    function renderSizePrices(){
+      const paper = controls.paper.value;
+      const sizes = [['8x10','8 × 10 in'],['12x18','12 × 18 in'],['16x24','16 × 24 in'],['20x30','20 × 30 in']];
+      priceTable.replaceChildren();
+      if(!PRINT_PRICES[paper]){
+        const note = document.createElement('p'); note.className = 'muted'; note.textContent = 'Choose a paper to compare prices by size.'; priceTable.append(note); return;
+      }
+      const heading = document.createElement('p'); heading.className = 'size-prices-head muted'; heading.textContent = 'Prices in ' + paper + ' — tap a size'; priceTable.append(heading);
+      for(const [key,label] of sizes){
+        const row = document.createElement('button'); row.type = 'button'; row.className = 'size-price'; row.dataset.size = key;
+        if(controls.size.value === key) row.classList.add('is-active');
+        const name = document.createElement('span'); name.textContent = label;
+        const amount = document.createElement('strong'); amount.textContent = money(PRINT_PRICES[paper][key]);
+        row.append(name, amount);
+        row.addEventListener('click', () => { controls.size.value = key; updateHint(); });
+        priceTable.append(row);
+      }
     }
     qin.addEventListener('input', updateHint);
     // Low-click defaults: 8x10, Moab cheaper matte, Borderless, 0in border, To discuss delivery, qty 1.

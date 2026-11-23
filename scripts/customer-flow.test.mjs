@@ -50,7 +50,7 @@ test('booking entry intent survives the login round trip',()=>{
   assert.ok(js.includes("url.searchParams.set('return',returnPath)"),'login links must carry the intent');
   const html=fs.readFileSync('book/index.html','utf8');
   assert.ok(html.includes('booking.js?v=20261123-intent'),'the booking script needs a new cache-busting version');
-  assert.ok(fs.readFileSync('prints/index.html','utf8').includes('prints.js?v=20261123-convert'));
+  assert.ok(fs.readFileSync('prints/index.html','utf8').includes('prints.js?v=20261123-buyer'));
 });
 
 test('a print chosen before login reaches the cart after sign-in',()=>{
@@ -67,4 +67,13 @@ test('the homepage reaches photographs and booking before the soundtrack',()=>{
   assert.ok(html.indexOf('id="stories"')<html.indexOf('id="soundtrack"'),'shop content comes before the music');
   assert.ok(html.indexOf('id="booking"')<html.indexOf('id="soundtrack"'),'booking comes before the music');
   assert.equal((html.match(/id="soundtrack"/g)||[]).length,1,'the soundtrack stays on the page, once');
+});
+
+test('each print compares all four sizes and their prices before adding',()=>{
+  const js=fs.readFileSync('assets/prints.js','utf8');
+  assert.match(js,/const priceTable = document\.createElement\('div'\); priceTable\.className = 'size-prices'/);
+  assert.match(js,/amount\.textContent = money\(PRINT_PRICES\[paper\]\[key\]\)/,'every size shows its price');
+  assert.match(js,/controls\.size\.value = key; updateHint\(\)/,'choosing a size is one click');
+  assert.ok(js.includes("'Choose a paper to compare prices by size.'"),'an unpriced paper says why');
+  assert.ok(fs.readFileSync('assets/prints.css','utf8').includes('.size-price.is-active'));
 });
