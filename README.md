@@ -5,7 +5,7 @@ A photography portfolio designed as a quiet field journal: travel, nature, and h
 ## What’s here
 
 - Browse 53 photographs—travel, nature, cities, and people—by subject and reveal more in small batches.
-- Open any photograph for a larger view.
+- Search the print catalog by title, subject, place or category, then open any photograph for a larger view.
 - Optional Spotify players for the browsing soundtrack. Audio does not start automatically.
 - One Photography gallery includes editorial work and commissioned sessions. Prints remain a separate section with inquiries handled by email.
 - Direct inquiry links for photo shoots, print questions, phone, email, and Instagram.

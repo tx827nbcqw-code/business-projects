@@ -51,9 +51,12 @@ import {bookingDraft} from './customer-model.mjs';
      confirm.innerHTML='Confirm Inquiry <span aria-hidden="true">→</span>';
    }finally{busy=false;confirm.disabled=edit.disabled=reviewButton.disabled=false;}
  });
- if(new URLSearchParams(location.search).get('type')==='business')fields.shootType.value='Business / branding';configure();
+ const entryType=new URLSearchParams(location.search).get('type');
+ function applyEntryType(){if(entryType==='business'&&!fields.shootType.value)fields.shootType.value='Business / branding';}
+ applyEntryType();configure();
 
  const access=document.querySelector('#booking-access'),notice=document.querySelector('#booking-login-notice'),saveStatus=document.querySelector('#booking-save-status');
+ if(entryType){const returnPath='/book/?'+new URLSearchParams({type:entryType});for(const link of notice.querySelectorAll('a[href*="/account/"]')){const url=new URL(link.href);url.searchParams.set('return',returnPath);link.href=url.pathname+url.search;}}
  function status(text,error=false){saveStatus.textContent=text;saveStatus.classList.toggle('error',error);}
  async function saveDraft(){
    const uid=account.user?.uid;if(!uid||uid!==activeUid)return;
@@ -65,12 +68,12 @@ import {bookingDraft} from './customer-model.mjs';
  account.onChange(async({user,profile,problem})=>{
    if(!user){
      if(done){location.reload();return;}requestId=crypto.randomUUID();
-     activeUid=null;clearTimeout(draftTimer);access.disabled=true;notice.hidden=false;form.reset();reviewedData=null;receipt=null;review.hidden=true;details.hidden=false;document.querySelector('#intro').hidden=false;configure();status(problem||'Log in to save your booking details.',!!problem);return;
+     activeUid=null;clearTimeout(draftTimer);access.disabled=true;notice.hidden=false;form.reset();applyEntryType();reviewedData=null;receipt=null;review.hidden=true;details.hidden=false;document.querySelector('#intro').hidden=false;configure();status(problem||'Log in to save your booking details.',!!problem);return;
    }
    if(activeUid===user.uid)return;activeUid=user.uid;const uid=user.uid;access.disabled=true;notice.hidden=true;status('Loading your saved booking details…');
    try{
      const draft=await account.loadDraft();if(account.user?.uid!==uid)return;
-     if(draft){for(const [key,value] of Object.entries(draft)){const el=fields[key];if(el&&typeof value==='string')el.value=value;}advice.checked=!!draft.locationAdvice;fields.smsConsent.checked=!!draft.smsConsent;requestId=draft.requestId||crypto.randomUUID();}
+     if(draft){for(const [key,value] of Object.entries(draft)){const el=fields[key];if(el&&typeof value==='string')el.value=value;}advice.checked=!!draft.locationAdvice;fields.smsConsent.checked=!!draft.smsConsent;requestId=draft.requestId||crypto.randomUUID();}else applyEntryType();
      const savedProfile=account.profile;fields.client.value=fields.client.value||savedProfile?.name||user.displayName||'';fields.phone.value=fields.phone.value||savedProfile?.phone||'';fields.email.value=user.email||'';fields.email.readOnly=true;
      configure();access.disabled=false;status(draft?'Your saved booking details are ready.':'Your booking details will save as you go.');live();
    }catch(error){if(account.user?.uid===uid)status('Saved booking details could not be loaded. Reload this page to try again.',true);}
