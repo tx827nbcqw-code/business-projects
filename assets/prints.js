@@ -139,12 +139,12 @@ function render(){
       addToCart({title:p.title, imageUrl:p.imageUrl, category:p.category, size:size, paper:controls.paper.value || 'Help me choose', border:controls.border.value, borderSize:controls.borderSize.value + ' in', signed:'Unsigned', delivery:controls.delivery.value, quantity:qty});
     });
     detail.appendChild(btn);
-    const quickBtn = document.createElement('button'); quickBtn.type = 'button'; quickBtn.className = 'inquire'; quickBtn.textContent = 'Quick add — 8 × 10, Moab matte';
+    const quickBtn = document.createElement('button'); quickBtn.type = 'button'; quickBtn.className = 'inquire'; quickBtn.textContent = 'Add to cart — 8 × 10 · ' + money(PRINT_PRICES['Moab Lasal Photo Matte 230']['8x10']);
     quickBtn.addEventListener('click', () => { addToCart({title:p.title, imageUrl:p.imageUrl, category:p.category, size:'8x10', paper:'Moab Lasal Photo Matte 230', border:'Borderless', borderSize:'0 in', signed:'Unsigned', delivery:'Shipping', quantity:1}); });
     body.appendChild(quickBtn);
-    const inquireBtn = document.createElement('button'); inquireBtn.type = 'button'; inquireBtn.className = 'inquire'; inquireBtn.textContent = 'Inquire to Buy';
+    const inquireBtn = document.createElement('button'); inquireBtn.type = 'button'; inquireBtn.className = 'inquire'; inquireBtn.textContent = 'Choose size & paper';
     inquireBtn.dataset.openPrint='';
-    inquireBtn.setAttribute('aria-expanded','false'); inquireBtn.addEventListener('click', () => { detail.hidden = !detail.hidden; card.classList.toggle('is-open', !detail.hidden); inquireBtn.textContent = detail.hidden ? 'Inquire to Buy' : 'Close details'; inquireBtn.setAttribute('aria-expanded', String(!detail.hidden)); if(!detail.hidden){h.tabIndex=-1;h.focus({preventScroll:true});body.scrollIntoView({block:'start',behavior:'smooth'});} });
+    inquireBtn.setAttribute('aria-expanded','false'); inquireBtn.addEventListener('click', () => { detail.hidden = !detail.hidden; card.classList.toggle('is-open', !detail.hidden); inquireBtn.textContent = detail.hidden ? 'Choose size & paper' : 'Close options'; inquireBtn.setAttribute('aria-expanded', String(!detail.hidden)); if(!detail.hidden){h.tabIndex=-1;h.focus({preventScroll:true});body.scrollIntoView({block:'start',behavior:'smooth'});} });
     body.appendChild(inquireBtn);
     card.append(previewWrap, body);
     grid.appendChild(card);
@@ -162,7 +162,10 @@ async function changeCart(item,delta){
   catch(error){cartStatus(error.code?account.message(error):error.message,true);}
   finally{cartWorking=false;}
 }
-async function addToCart(item){await changeCart(item,item.quantity);}
+const PENDING_PRINT='madman-pending-print';
+function rememberPendingPrint(item){try{sessionStorage.setItem(PENDING_PRINT,JSON.stringify(item));}catch{}}
+function takePendingPrint(){try{const raw=sessionStorage.getItem(PENDING_PRINT);if(!raw)return null;sessionStorage.removeItem(PENDING_PRINT);return JSON.parse(raw);}catch{return null;}}
+async function addToCart(item){if(!account.user){rememberPendingPrint(item);await account.requireLogin();return;}await changeCart(item,item.quantity);}
 function renderSummary(){
   const sumEl = $('#order-summary'); if(!sumEl) return;
   if(cart.length===0){ sumEl.innerHTML = '<p class="muted">Add prints to your cart to see the order summary here.</p>'; return; }
@@ -305,7 +308,7 @@ account.onChange(({user,profile,problem})=>{
   cartStatus('Loading your saved cart…');
   account.watchCart((lines,saved)=>{
     if(account.user?.uid!==user.uid)return;
-    cart=lines.flatMap(line=>{const photo=CATALOG.find(p=>p.src===line.photoId);return photo?[{...line,key:line.id,title:photo.title,imageUrl:photo.imageUrl,category:photo.category,borderSize:line.borderSize+' in',signed:'Unsigned'}]:[];});cartReady=saved;updateCart();cartStatus(saved?'Cart saved to your account. Return any time, on any device.':'Syncing your cart…');
+    cart=lines.flatMap(line=>{const photo=CATALOG.find(p=>p.src===line.photoId);return photo?[{...line,key:line.id,title:photo.title,imageUrl:photo.imageUrl,category:photo.category,borderSize:line.borderSize+' in',signed:'Unsigned'}]:[];});cartReady=saved;updateCart();cartStatus(saved?'Cart saved to your account. Return any time, on any device.':'Syncing your cart…');if(saved){const pending=takePendingPrint();if(pending)addToCart(pending).catch(()=>{});}
     if(saved&&pageParams.get('cart')==='1'){pageParams.delete('cart');$('#open-cart').click();}
   },error=>{cartReady=false;cartStatus(error,true);});
 });

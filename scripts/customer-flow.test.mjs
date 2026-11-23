@@ -50,5 +50,21 @@ test('booking entry intent survives the login round trip',()=>{
   assert.ok(js.includes("url.searchParams.set('return',returnPath)"),'login links must carry the intent');
   const html=fs.readFileSync('book/index.html','utf8');
   assert.ok(html.includes('booking.js?v=20261123-intent'),'the booking script needs a new cache-busting version');
-  assert.ok(fs.readFileSync('prints/index.html','utf8').includes('prints.js?v=20261123-search'));
+  assert.ok(fs.readFileSync('prints/index.html','utf8').includes('prints.js?v=20261123-convert'));
+});
+
+test('a print chosen before login reaches the cart after sign-in',()=>{
+  const js=fs.readFileSync('assets/prints.js','utf8');
+  assert.match(js,/if\(!account\.user\)\{rememberPendingPrint\(item\)/,'the choice must be held across the gate');
+  assert.match(js,/if\(saved\)\{const pending=takePendingPrint\(\)/,'it must be added once the saved cart is ready');
+  assert.match(js,/removeItem\(PENDING_PRINT\)/,'the held choice must be consumed only once');
+  assert.ok(js.includes("'Add to cart — 8 × 10 · ' + money("),'the buy button must state the price');
+  assert.ok(!js.includes('Inquire to Buy'),'the ambiguous second label is gone');
+});
+
+test('the homepage reaches photographs and booking before the soundtrack',()=>{
+  const html=fs.readFileSync('index.html','utf8');
+  assert.ok(html.indexOf('id="stories"')<html.indexOf('id="soundtrack"'),'shop content comes before the music');
+  assert.ok(html.indexOf('id="booking"')<html.indexOf('id="soundtrack"'),'booking comes before the music');
+  assert.equal((html.match(/id="soundtrack"/g)||[]).length,1,'the soundtrack stays on the page, once');
 });
